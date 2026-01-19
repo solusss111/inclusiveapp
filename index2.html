@@ -123,49 +123,37 @@
     </div>
 
     <div id="levelsScreen" class="screen active">
-      <div class="task-box">
-        <h2>Сыныпты таңдаңыз 📚</h2>
-        <p class="instruction">Өз деңгейіңізге сәйкес сыныпты таңдап, тапсырмаларды орындаңыз</p>
-      </div>
-
-      <div class="cards-grid">
-        <div class="card" onclick="playClick(); showScreen('grade0Menu')">
-          <div class="card-icon">🐣</div>
-          <h3>0-сынып</h3>
-          <p>Алғашқы қадам</p>
-          <p style="margin-top: 10px; color: #667eea;">• Дыбысты тану<br>• Дауыс созу<br>• Аспаптар</p>
+      <div class="radial-menu-container" id="mainRadialMenu">
+        <div class="radial-center-btn" onclick="toggleMainMenu()">
+          Сыныпты<br>таңдаңыз
         </div>
-
-        <div class="card" onclick="playClick(); showScreen('grade1Menu')">
-          <div class="card-icon">🐶</div>
-          <h3>1-сынып</h3>
-          <p>Дыбыстар сиқыры</p>
-          <p style="margin-top: 10px; color: #667eea;">• Жануарлар<br>• Үй дыбыстары<br>• Буындар</p>
+        <!-- Items (0-4) -->
+        <div class="radial-item" style="--angle: 270deg; --dist: 220px;" onclick="showScreen('grade0Menu')">
+          <div style="font-size: 40px;">🐣</div>
+          <h3>0</h3>
+          <p>Дайындық</p>
         </div>
-
-        <div class="card" onclick="playClick(); showScreen('grade2Menu')">
-          <div class="card-icon">🚗</div>
-          <h3>2-сынып</h3>
-          <p>Сөздер әлемі</p>
-          <p style="margin-top: 10px; color: #667eea;">• Көліктер<br>• Ритм<br>• С-Ш, З-Ж</p>
+        <div class="radial-item" style="--angle: 342deg; --dist: 220px;" onclick="showScreen('grade1Menu')">
+          <div style="font-size: 40px;">🐶</div>
+          <h3>1</h3>
+          <p>1-сынып</p>
         </div>
-
-        <div class="card" onclick="playClick(); showScreen('grade3Menu')">
-          <div class="card-icon">🎵</div>
-          <h3>3-сынып</h3>
-          <p>Сүйлеу шеберлігі</p>
-          <p style="margin-top: 10px; color: #667eea;">• Музыка<br>• Интонация<br>• Екпін</p>
+        <div class="radial-item" style="--angle: 54deg; --dist: 220px;" onclick="showScreen('grade2Menu')">
+          <div style="font-size: 40px;">🚗</div>
+          <h3>2</h3>
+          <p>2-сынып</p>
         </div>
-
-        <div class="card" onclick="playClick(); showScreen('grade4Menu')">
-          <div class="card-icon">🎤</div>
-          <h3>4-сынып</h3>
-          <p>Болашақ тұлға</p>
-          <p style="margin-top: 10px; color: #667eea;">• Әңгімелер<br>• Диалог<br>• Оқу</p>
+        <div class="radial-item" style="--angle: 126deg; --dist: 220px;" onclick="showScreen('grade3Menu')">
+          <div style="font-size: 40px;">🎵</div>
+          <h3>3</h3>
+          <p>3-сынып</p>
+        </div>
+        <div class="radial-item" style="--angle: 198deg; --dist: 220px;" onclick="showScreen('grade4Menu')">
+          <div style="font-size: 40px;">🎤</div>
+          <h3>4</h3>
+          <p>4-сынып</p>
         </div>
       </div>
-
-
     </div>
 
     <div id="grade0Menu" class="screen">
@@ -269,45 +257,24 @@
     </div>
 
     <div id="g0Task2" class="screen">
-      <div class="task-box">
-        <h2>🎤 Дауыс созу</h2>
-        <p class="instruction">
-          Микрофонға ұзақ "А-А-А-А" деп созып айтыңыз!<br>
-          Пойыз жүріп кетеді!
-        </p>
-
-        <div class="sound-wave" id="waveContainer">
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
+      <div class="voice-bubble-container" id="voiceGameContainer">
+        <div class="voice-center-bubble" id="voiceCenterBtn" onclick="handleVoiceCenterClick()">
+          Дауыс созу
         </div>
-
-        <div style="font-size: 100px; margin: 30px 0;">
-          <span id="trainEmoji" style="display: inline-block; transition: transform 0.3s;">🚂</span>
-        </div>
-
-        <div class="progress-container">
-          <div class="progress-bar" id="voiceProgress">0%</div>
-        </div>
-
-        <button class="btn btn-success" onclick="startVoicePractice()" id="voiceBtn">
-          🎙️ Бастау
-        </button>
-        <button class="btn btn-secondary" onclick="stopVoicePractice()" id="stopVoiceBtn" style="display: none;">
-          ⏸️ Тоқтату
-        </button>
-
-        <div id="g0t2Feedback" class="feedback"></div>
-
-        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">
-          ⬅️ Артқа
-        </button>
+        <!-- Bubbles will be generated by JS -->
       </div>
+      <div id="voiceFeedback" class="feedback"></div>
+
+      <!-- Hidden train animation container -->
+      <div id="voiceTrainContainer" style="display:none; text-align:center; padding: 20px;">
+        <div style="font-size: 80px; transition: transform 0.5s;" id="trainIcon">🚂</div>
+        <p style="font-size: 24px;">Пойыз жүріп кетеді! <span id="trainTimer"></span></p>
+      </div>
+
+      <button class="btn btn-secondary" style="position:absolute; bottom:20px; left:20px;"
+        onclick="playClick(); showScreen('grade0Menu')">
+        ⬅️ Артқа
+      </button>
     </div>
 
     <div id="g0Task3" class="screen">

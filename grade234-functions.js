@@ -985,3 +985,270 @@ function playSound(type) {
     limitAudioDurationG234(audio);
   }
 }
+
+// ========== NEW INTERFACE LOGIC & RANDOMIZATION (APPENDED) ==========
+
+// 1. Radial Main Menu Logic
+function toggleMainMenu() {
+  const menu = document.getElementById('mainRadialMenu');
+  if (menu) {
+    if (menu.classList.contains('active')) {
+      menu.classList.remove('active');
+    } else {
+      menu.classList.add('active');
+      playClick();
+    }
+  }
+}
+
+// 2. Randomization History (For "No Repeat > 2 times")
+const audioHistory = {
+  animals: [],
+  nature: [],
+  human: [],
+  instruments: []
+};
+
+function getNextRandom(list, historyKey) {
+  const history = audioHistory[historyKey] || [];
+  // Exclude last 2 played items
+  const lastTwo = history.slice(-2);
+  const available = list.filter(item => !lastTwo.includes(item));
+  const pool = available.length > 0 ? available : list;
+  const chosen = pool[Math.floor(Math.random() * pool.length)];
+
+  history.push(chosen);
+  if (history.length > 5) history.shift();
+  audioHistory[historyKey] = history;
+
+  return chosen;
+}
+
+// Overrides for Random Functions (Grade 0/1/2/3/4)
+
+// Grade 0 Task 4: Animals (Domestic) - Override
+window.playRandomAnimal = function () {
+  const animals = ['horse', 'cow', 'sheep', 'cat', 'dog'];
+  const chosen = getNextRandom(animals, 'animals');
+
+  window.currentAnimal = chosen; // For checkAnimal(choice) usually global
+  // Attempt to find variable used by legacy code if different
+  if (typeof currentCharacter !== 'undefined') { /* ignore */ }
+
+  const audio = document.getElementById(chosen + 'Audio');
+  if (audio) {
+    if (typeof limitAudioDurationG234 === 'function') limitAudioDurationG234(audio);
+    else audio.play();
+  } else {
+    console.error("Audio not found: " + chosen);
+  }
+};
+
+// Grade 0 Task 6: Nature
+window.playRandomNature = function () {
+  const nature = ['bird', 'water', 'wind'];
+  const chosen = getNextRandom(nature, 'nature');
+  const audio = document.getElementById(chosen + 'Audio');
+  if (audio) {
+    if (typeof limitAudioDurationG234 === 'function') limitAudioDurationG234(audio);
+    else audio.play();
+  }
+  window.currentNature = chosen;
+};
+
+// Grade 0 Task 7: Human Sounds (Also used in Grade 4)
+window.playRandomHumanSound = function () {
+  const sounds = ['laugh', 'cry', 'sneeze', 'cough'];
+  const chosen = getNextRandom(sounds, 'human');
+  // Need mapping logic similar to other tasks if not standard ID
+  // Assuming checkHumanSound checks a global variable.
+  window.currentHumanSound = chosen;
+  /* Note: In previous context, we didn't see where currentHumanSound is defined, 
+     but checkHumanSound('laugh') implies it checks against something. 
+     We set it here to be safe. */
+};
+
+// Grade 0 Task 3: Instruments
+window.playInstrumentSound = function () {
+  const instruments = ['piano', 'drum', 'guitar', 'violin'];
+  const chosen = getNextRandom(instruments, 'instruments');
+  const audio = document.getElementById(chosen + 'Audio');
+  if (audio) {
+    if (typeof limitAudioDurationG234 === 'function') limitAudioDurationG234(audio);
+    else audio.play();
+  }
+  window.currentInstrument = chosen;
+};
+
+
+// 3. VOICE TASK (Р”Р°СѓС‹СЃ СЃРѕР·Сѓ) - New Bubble Logic
+let voiceState = 'idle'; // idle, expanded, selected, listening
+let voiceLetters = ['Рђ', 'У', 'Р‘', 'Р’', 'Р“', 'Т’', 'Р”', 'Р•'];
+let selectedVoiceLetter = '';
+
+function initVoiceGame() {
+  voiceState = 'idle';
+  const container = document.getElementById('voiceGameContainer');
+  const centerBtn = document.getElementById('voiceCenterBtn');
+  const trainContainer = document.getElementById('voiceTrainContainer');
+  const feedback = document.getElementById('voiceFeedback');
+
+  if (trainContainer) trainContainer.style.display = 'none';
+  if (container) container.classList.remove('hidden', 'expanded');
+  if (feedback) feedback.innerText = '';
+
+  // Remove old bubbles
+  if (container) {
+    const oldBubbles = container.querySelectorAll('.small-bubble');
+    oldBubbles.forEach(b => b.remove());
+  }
+
+  if (centerBtn) {
+    centerBtn.innerText = "Р”Р°СѓС‹СЃ СЃРѕР·Сѓ";
+    centerBtn.style.fontSize = "22px";
+    centerBtn.style.background = "linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)";
+  }
+}
+
+function handleVoiceCenterClick() {
+  const container = document.getElementById('voiceGameContainer');
+  const centerBtn = document.getElementById('voiceCenterBtn');
+
+  if (typeof playClick === 'function') playClick();
+
+  if (voiceState === 'idle') {
+    // Step 2: Expand bubbles
+    generateVoiceBubbles();
+    // Force reflow
+    void container.offsetWidth;
+    setTimeout(() => {
+      container.classList.add('expanded');
+      positionBubblesExpanded();
+    }, 50);
+    voiceState = 'expanded';
+
+  } else if (voiceState === 'expanded') {
+    // Step 3: Collapse back
+    container.classList.remove('expanded');
+    positionBubblesCenter();
+    setTimeout(() => {
+      // Clear
+      const bubbles = container.querySelectorAll('.small-bubble');
+      bubbles.forEach(b => b.remove());
+      voiceState = 'idle';
+      // Randomize location logic handled next expansion :)
+    }, 600);
+
+  } else if (voiceState === 'selected') {
+    // Step 5: Clicked "РўР°ТЈРґР°Сѓ" -> Start Mic Test
+    startVoicePractice();
+  }
+}
+
+function generateVoiceBubbles() {
+  const container = document.getElementById('voiceGameContainer');
+  const allLetters = ['Рђ', 'У', 'Р‘', 'Р’', 'Р“', 'Т’', 'Р”', 'Р•', 'Р–', 'Р—', 'Р', 'Рљ', 'Тљ', 'Р›', 'Рњ', 'Рќ', 'Рћ', 'УЁ', 'Рџ', 'Р ', 'РЎ', 'Рў', 'РЈ', 'Т°', 'Т®', 'РЁ', 'Р«', 'Р†'];
+  // Pick 8 random
+  const chosen = [];
+  while (chosen.length < 8) {
+    const r = allLetters[Math.floor(Math.random() * allLetters.length)];
+    if (!chosen.includes(r)) chosen.push(r);
+  }
+
+  chosen.forEach((letter, i) => {
+    const b = document.createElement('div');
+    b.className = 'small-bubble';
+    b.innerText = letter;
+    b.style.left = '50%';
+    b.style.top = '50%';
+    b.onclick = (e) => {
+      e.stopPropagation();
+      selectVoiceLetter(letter);
+    };
+    container.appendChild(b);
+  });
+}
+
+function positionBubblesExpanded() {
+  const bubbles = document.querySelectorAll('.voice-bubble-container .small-bubble');
+  const count = bubbles.length;
+  const radius = 220;
+  bubbles.forEach((b, i) => {
+    const angle = (i * (360 / count)) * (Math.PI / 180);
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+    b.style.left = `calc(50% + ${x}px)`;
+    b.style.top = `calc(50% + ${y}px)`;
+    b.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+}
+
+function positionBubblesCenter() {
+  const bubbles = document.querySelectorAll('.voice-bubble-container .small-bubble');
+  bubbles.forEach(b => {
+    b.style.left = '50%';
+    b.style.top = '50%';
+    b.style.transform = 'translate(-50%, -50%) scale(0)';
+  });
+}
+
+function selectVoiceLetter(letter) {
+  selectedVoiceLetter = letter;
+  // Change center text
+  const centerBtn = document.getElementById('voiceCenterBtn');
+  centerBtn.innerText = "РўР°ТЈРґР°Сѓ";
+  centerBtn.style.fontSize = "32px";
+  centerBtn.style.background = "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)";
+
+  // Play sound
+  const audio = new Audio(`sounds/letters/letter_${letter}.mp3`);
+  audio.play().catch(e => {
+    console.log("Audio play err " + letter);
+  });
+
+  voiceState = 'selected';
+}
+
+function startVoicePractice() {
+  const feedback = document.getElementById('voiceFeedback');
+  feedback.innerText = `РњРёРєСЂРѕС„РѕРЅТ“Р° Т±Р·Р°Т› "${selectedVoiceLetter}-${selectedVoiceLetter}..." РґРµРї СЃРѕР·С‹Рї Р°Р№С‚С‹ТЈС‹Р·!`;
+
+  document.getElementById('voiceGameContainer').classList.add('hidden');
+  document.getElementById('voiceTrainContainer').style.display = 'block';
+
+  let progress = 0;
+  const train = document.getElementById('trainIcon');
+  train.style.transform = `translateX(0px)`;
+
+  const timer = setInterval(() => {
+    progress += 5;
+    train.style.transform = `translateX(${progress * 4}px)`;
+
+    if (progress >= 100) {
+      clearInterval(timer);
+      feedback.innerText = "РџРѕР№С‹Р· Р¶ТЇСЂС–Рї РєРµС‚РµРґС–! РўР°РјР°С€Р°! рџЋ‰";
+      feedback.className = "feedback success";
+      if (typeof playSuccess === 'function') playSuccess();
+      setTimeout(() => {
+        // Reset
+        document.getElementById('voiceGameContainer').classList.remove('hidden');
+        document.getElementById('voiceTrainContainer').style.display = 'none';
+        initVoiceGame();
+      }, 3000);
+    }
+  }, 200);
+}
+
+// Init observer
+document.addEventListener('DOMContentLoaded', () => {
+  const screen = document.getElementById('g0Task2');
+  if (screen) {
+    const observer = new MutationObserver(() => {
+      if (screen.classList.contains('active')) {
+        initVoiceGame();
+        toggleMainMenu(); // Ensure menu is handled if needed
+      }
+    });
+    observer.observe(screen, { attributes: true, attributeFilter: ['class'] });
+  }
+});
