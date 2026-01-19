@@ -859,16 +859,15 @@ function playSound(type) {
 
   // 1-СЫНЫП
   if (type === 'soundFrequency') {
-    const frequencies = ['high', 'mid'];
+    const frequencies = ['high', 'mid', 'low'];
     const freq = frequencies[Math.floor(Math.random() * frequencies.length)];
     currentFrequency = freq;
-    if (freq === 'high') audioPath = 'sounds/voice frequency/baby high.mp3';
-    else if (freq === 'mid') audioPath = 'sounds/voice frequency/woman mid.mp3';
+    audioPath = `sounds/sound_frequency/${freq}.mp3`;
   }
 
   // 2-СЫНЫП
   else if (type === 'vehicle') {
-    const vehicles = ['car', 'plane', 'train', 'moto'];
+    const vehicles = ['car', 'plane', 'train', 'motorcycle'];
     const chosen = vehicles[Math.floor(Math.random() * vehicles.length)];
     currentVehicle = chosen;
     audioPath = `sounds/transport/${chosen}.mp3`;

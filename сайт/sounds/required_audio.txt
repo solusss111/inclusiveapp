@@ -6,10 +6,10 @@
 
 1. ТРАНСПОРТ (sounds/transport/)
 --------------------------------
-[ ] car.mp3        - Звук машины (мотор или сигнал)*
-[ ] plane.mp3      - Звук самолета*
-[ ] train.mp3      - Звук поезда*
-[ ] motorcycle.mp3 - Звук мотоцикла*
+[ ] car.mp3        - Звук машины (мотор или сигнал)
+[ ] plane.mp3      - Звук самолета
+[ ] train.mp3      - Звук поезда
+[ ] motorcycle.mp3 - Звук мотоцикла
 
 2. БУЫНДАР (sounds/syllables/)
 --------------------------------
@@ -19,51 +19,13 @@
 [ ] word_3.mp3     - 3 буын (мысалы: "Машина")
 [ ] word_4.mp3     - 4 буын (мысалы: "Балапан-дар")
 
-3. ӘРІПТЕР ДЫБЫСЫ (sounds/letters/) - 1-СЫНЫП
+3. ӘРІПТЕР ДЫБЫСЫ (sounds/letters/)
 -----------------------------------
-(Файлды "letter_әріп.mp3" деп атаңыз, бәрі кіші әріппен)
-[ ] letter_а.mp3
-[ ] letter_ә.mp3
-[ ] letter_б.mp3
-[ ] letter_в.mp3
-[ ] letter_г.mp3
-[ ] letter_ғ.mp3
-[ ] letter_д.mp3
-[ ] letter_е.mp3
-[ ] letter_ё.mp3
-[ ] letter_ж.mp3
-[ ] letter_з.mp3
-[ ] letter_и.mp3
-[ ] letter_й.mp3
-[ ] letter_к.mp3
-[ ] letter_қ.mp3
-[ ] letter_л.mp3
-[ ] letter_м.mp3
-[ ] letter_н.mp3
-[ ] letter_ң.mp3
-[ ] letter_о.mp3
-[ ] letter_ө.mp3
-[ ] letter_п.mp3
-[ ] letter_р.mp3
-[ ] letter_с.mp3
-[ ] letter_т.mp3
-[ ] letter_у.mp3
-[ ] letter_ұ.mp3
-[ ] letter_ү.mp3
-[ ] letter_ф.mp3
-[ ] letter_х.mp3
-[ ] letter_һ.mp3
-[ ] letter_ц.mp3
-[ ] letter_ч.mp3
-[ ] letter_ш.mp3
-[ ] letter_щ.mp3
-[ ] letter_ъ.mp3
-[ ] letter_ы.mp3
-[ ] letter_і.mp3
-[ ] letter_ь.mp3
-[ ] letter_э.mp3
-[ ] letter_ю.mp3
-[ ] letter_я.mp3
+(Запишите слова с акцентом на звук)
+[ ] word_s.mp3     - С дыбысы бар сөз (мысалы: "Сағат")
+[ ] word_sh.mp3    - Ш дыбысы бар сөз (мысалы: "Шана")
+[ ] word_z.mp3     - З дыбысы бар сөз (мысалы: "Зауза")
+[ ] word_zh.mp3    - Ж дыбысы бар сөз (мысалы: "Жаңбыр")
 
 4. МУЗЫКАЛЫҚ ЫРҒАҚ (sounds/music_tempo/)
 ----------------------------------------

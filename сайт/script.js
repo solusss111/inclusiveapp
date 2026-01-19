@@ -10,10 +10,30 @@ let correctAnswer = "";
 let isPlaying = false;
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+// ========== ДЫБЫС ҰЗАҚТЫҒЫН ШЕКТЕУ ==========
+const MAX_AUDIO_DURATION = 3; // 3 секунд
+
+function limitAudioDuration(audioElement) {
+  if (!audioElement) return;
+
+  // Ограничиваем воспроизведение до 3 секунд
+  const stopAudioAfterLimit = () => {
+    setTimeout(() => {
+      if (!audioElement.paused && audioElement.currentTime > 0) {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      }
+    }, MAX_AUDIO_DURATION * 1000);
+  };
+
+  audioElement.play().catch(e => { });
+  stopAudioAfterLimit();
+}
+
 // ========== ДЫБЫС ЭФФЕКТІЛЕРІ ==========
-function playClick() { document.getElementById('clickSound').play().catch(e => { }); }
-function playSuccess() { document.getElementById('successSound').play().catch(e => { }); }
-function playError() { document.getElementById('errorSound').play().catch(e => { }); }
+function playClick() { limitAudioDuration(document.getElementById('clickSound')); }
+function playSuccess() { limitAudioDuration(document.getElementById('successSound')); }
+function playError() { limitAudioDuration(document.getElementById('errorSound')); }
 
 // ========== ЭКРАНДАРДЫ АУЫСТЫРУ ==========
 function showScreen(screenId) {
@@ -189,7 +209,7 @@ function playInstrumentSound() {
   const audio = document.getElementById(currentSoundTarget + 'Audio');
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch(e => console.log("Audio play failed"));
+    limitAudioDuration(audio);
   }
 }
 
@@ -223,7 +243,7 @@ function playRandomAnimal() {
   const audio = document.getElementById(currentSoundTarget + 'Audio');
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch(e => console.log("Audio play error"));
+    limitAudioDuration(audio);
   }
 }
 
@@ -255,7 +275,7 @@ function hitDrum() {
   // Используем clap.mp3 для звука барабана
   const drumSound = document.getElementById('clickSound');
   drumSound.currentTime = 0;
-  drumSound.play().catch(e => console.log("Drum sound failed"));
+  limitAudioDuration(drumSound);
 }
 
 function playRhythm(type) {
@@ -263,7 +283,7 @@ function playRhythm(type) {
   const audio = type === 'march' ? document.getElementById('fastRhythm') : document.getElementById('slowRhythm');
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch(e => console.log("Rhythm play failed"));
+    limitAudioDuration(audio);
   }
 }
 
@@ -278,7 +298,7 @@ function playRandomNature() {
   const audio = document.getElementById(currentSoundTarget + 'Audio');
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch(e => { });
+    limitAudioDuration(audio);
   }
 }
 
@@ -311,7 +331,7 @@ function playRandomHumanSound() {
   const audio = document.getElementById(currentSoundTarget + 'Audio');
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch(e => { });
+    limitAudioDuration(audio);
   }
 }
 
@@ -333,268 +353,7 @@ function checkHumanSound(choice) {
   }
 }
 
-// ========== 0-СЫНЫП: ТАПСЫРМА 8 - КӨЛІКТЕР ДЫБЫСЫ ==========
-const vehicles = ['car', 'plane', 'train', 'motorcycle'];
-
-function playRandomVehicle() {
-  currentSoundTarget = vehicles[Math.floor(Math.random() * vehicles.length)];
-  const feedback = document.getElementById('g0t8Feedback');
-  feedback.innerHTML = "🚗 Көлік дыбысы...";
-
-  const audio = document.getElementById(currentSoundTarget + 'Audio');
-  if (audio) {
-    audio.currentTime = 0;
-    audio.play().catch(e => { });
-  }
-}
-
-function checkVehicle0(choice) {
-  const feedback = document.getElementById('g0t8Feedback');
-  if (!currentSoundTarget) {
-    feedback.innerHTML = "Алдымен дыбысты тыңдаңыз!";
-    return;
-  }
-  if (choice === currentSoundTarget) {
-    feedback.innerHTML = "Дұрыс! Бұл - " + choice;
-    feedback.className = "feedback success";
-    showReward();
-    currentSoundTarget = null;
-  } else {
-    playError();
-    feedback.innerHTML = "Қате! Қайта тыңдап көріңіз.";
-    feedback.className = "feedback error";
-  }
-}
-
-// ========== 0-СЫНЫП: ТАПСЫРМА 9 - ҮЙ ДЫБЫСТАРЫ ==========
-const homeSounds = ['phone', 'clock', 'bike', 'doorbell', 'schoolbell'];
-
-function playRandomHomeSound() {
-  currentSoundTarget = homeSounds[Math.floor(Math.random() * homeSounds.length)];
-  const feedback = document.getElementById('g0t9Feedback');
-  feedback.innerHTML = "📱 Үй дыбысы...";
-
-  let audioId = currentSoundTarget;
-  if (currentSoundTarget === 'phone') audioId = 'phoneSound';
-  else if (currentSoundTarget === 'clock') audioId = 'clockSound';
-  else if (currentSoundTarget === 'bike') audioId = 'bikeSound';
-  else if (currentSoundTarget === 'doorbell') audioId = 'doorbellAudio';
-  else if (currentSoundTarget === 'schoolbell') audioId = 'schoolbellAudio';
-
-  const audio = document.getElementById(audioId);
-  if (audio) {
-    audio.currentTime = 0;
-    audio.play().catch(e => { });
-  }
-}
-
-function checkHomeSound0(choice) {
-  const feedback = document.getElementById('g0t9Feedback');
-  if (!currentSoundTarget) {
-    feedback.innerHTML = "Алдымен дыбысты тыңдаңыз!";
-    return;
-  }
-  if (choice === currentSoundTarget) {
-    feedback.innerHTML = "Дұрыс! Өте жақсы!";
-    feedback.className = "feedback success";
-    showReward();
-    currentSoundTarget = null;
-  } else {
-    playError();
-    feedback.innerHTML = "Қате! Қайта тыңдап көріңіз.";
-    feedback.className = "feedback error";
-  }
-}
-
-// ========== 1-СЫНЫП: ТАПСЫРМА 1 - ӘРІПТЕР (КРУГОВОЙ ИНТЕРФЕЙС) ==========
-const kazakhLetters = ['А', 'Ә', 'Б', 'В', 'Г', 'Ғ', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Қ', 'Л', 'М', 'Н', 'Ң', 'О', 'Ө', 'П', 'Р', 'С', 'Т', 'У', 'Ұ', 'Ү', 'Ф', 'Х', 'Һ', 'Ц', 'Ч', 'Ш', 'Щ', 'Ы', 'І', 'Э', 'Ю', 'Я'];
-
-// Состояния игры
-let letterGameState = 'initial'; // initial, listened, selected
-let correctLetterAnswer = '';
-let selectedLetterAnswer = '';
-let currentLetterOptions = [];
-
-// Поздравительные сообщения на казахском
-const congratsMessages = [
-  "Керемет! Өте жақсы!",
-  "Жарайсың! Тамаша!",
-  "Біліктісің! Жалғастыр!",
-  "Өте дұрыс! Мықтысың!",
-  "Супер! Жақсы жұмыс!"
-];
-
-function initializeLetterGame() {
-  // Выбираем случайную правильную букву
-  correctLetterAnswer = kazakhLetters[Math.floor(Math.random() * kazakhLetters.length)];
-
-  // Создаем массив из 6 букв (правильная + 5 случайных)
-  currentLetterOptions = [correctLetterAnswer];
-
-  while (currentLetterOptions.length < 6) {
-    const randomLetter = kazakhLetters[Math.floor(Math.random() * kazakhLetters.length)];
-    if (!currentLetterOptions.includes(randomLetter)) {
-      currentLetterOptions.push(randomLetter);
-    }
-  }
-
-  // Перемешиваем массив
-  currentLetterOptions.sort(() => Math.random() - 0.5);
-
-  // Заполняем маленькие круги
-  const optionCircles = document.querySelectorAll('.option-circle');
-  optionCircles.forEach((circle, index) => {
-    const letterSpan = circle.querySelector('.letter-option');
-    letterSpan.textContent = currentLetterOptions[index];
-    circle.classList.remove('selected', 'disabled');
-    circle.classList.add('disabled'); // Блокируем до прослушивания
-  });
-
-  // Сброс центра
-  document.getElementById('centerContent').textContent = '🔊';
-  document.getElementById('centerCircle').classList.remove('disabled', 'highlight');
-
-  letterGameState = 'initial';
-  selectedLetterAnswer = '';
-
-  // Очистка feedback
-  document.getElementById('g1t1Feedback').innerHTML = '';
-}
-
-function handleCenterClick() {
-  const centerCircle = document.getElementById('centerCircle');
-  const centerContent = document.getElementById('centerContent');
-  const feedback = document.getElementById('g1t1Feedback');
-
-  if (letterGameState === 'initial') {
-    // Шаг 1: Проигрываем звук
-    playLetterSound();
-
-    // Меняем смайлик на текст "Таңдау"
-    centerContent.textContent = 'Таңдау';
-    centerContent.style.fontSize = '32px';
-
-    // Разблокируем варианты ответов
-    const optionCircles = document.querySelectorAll('.option-circle');
-    optionCircles.forEach(circle => circle.classList.remove('disabled'));
-
-    // Блокируем центр до выбора ответа
-    centerCircle.classList.add('disabled');
-
-    letterGameState = 'listened';
-    feedback.innerHTML = '👂 Дыбысты тыңдадыңыз! Енді дұрыс әріпті таңдаңыз.';
-    feedback.className = 'feedback';
-
-  } else if (letterGameState === 'selected') {
-    // Шаг 3: Проверка ответа
-    checkLetterAnswer();
-  }
-}
-
-function playLetterSound() {
-  const letterCode = correctLetterAnswer.toLowerCase();
-  const audioPath = `sounds/letters/letter_${letterCode}.mp3`;
-  const audio = new Audio(audioPath);
-  audio.play().catch(e => {
-    console.warn("Audio lowercase failed, trying uppercase or original...");
-    // Попытка воспроизвести без toLowerCase() или как есть
-    const audioBackup = new Audio(`sounds/letters/letter_${correctLetterAnswer}.mp3`);
-    audioBackup.play().catch(err => {
-      console.error("Letter audio not found:", correctLetterAnswer);
-    });
-  });
-}
-
-function selectLetterOption(circleElement, optionIndex) {
-  // Разрешаем выбор, если слушали (listened) ИЛИ уже выбрали (selected) - для перевыбора
-  if (letterGameState !== 'listened' && letterGameState !== 'selected') {
-    return; // Блокировка если еще не прослушали
-  }
-
-  // Убираем выделение с предыдущего выбора
-  document.querySelectorAll('.option-circle').forEach(c => c.classList.remove('selected'));
-
-  // Выделяем выбранный вариант
-  circleElement.classList.add('selected');
-
-  selectedLetterAnswer = currentLetterOptions[optionIndex];
-
-  // ПРОИГРЫВАЕМ ЗВУК ВЫБРАННОЙ БУКВЫ
-  const letterCode = selectedLetterAnswer.toLowerCase();
-  const audio = new Audio(`sounds/letters/letter_${letterCode}.mp3`);
-  audio.play().catch(e => {
-    // Попытка с заглавной, если не вышло
-    const audioBackup = new Audio(`sounds/letters/letter_${selectedLetterAnswer}.mp3`);
-    audioBackup.play().catch(err => { });
-  });
-
-  // Разблокируем центральный круг и подсвечиваем его
-  const centerCircle = document.getElementById('centerCircle');
-  centerCircle.classList.remove('disabled');
-  centerCircle.classList.add('highlight');
-
-  // Сохраняем состояние selected
-  letterGameState = 'selected';
-
-  const feedback = document.getElementById('g1t1Feedback');
-  feedback.innerHTML = '💡 Таңдалды: ' + selectedLetterAnswer + '. Енді "Таңдау" батырмасын басыңыз!';
-  feedback.className = 'feedback';
-}
-
-function checkLetterAnswer() {
-  const feedback = document.getElementById('g1t1Feedback');
-  const centerCircle = document.getElementById('centerCircle');
-
-  // Убираем подсветку
-  centerCircle.classList.remove('highlight');
-
-  if (selectedLetterAnswer === correctLetterAnswer) {
-    // Правильный ответ
-    const randomCongrats = congratsMessages[Math.floor(Math.random() * congratsMessages.length)];
-    feedback.innerHTML = "✅ " + randomCongrats;
-    feedback.className = "feedback success";
-    playSuccess();
-    showReward();
-
-    // Следующий раунд через 2 секунды
-    setTimeout(() => {
-      initializeLetterGame();
-    }, 2000);
-
-  } else {
-    // Неправильный ответ
-    playError();
-    feedback.innerHTML = "❌ Қате! Дұрыс жауап: " + correctLetterAnswer + ". Қайталап көріңіз!";
-    feedback.className = "feedback error";
-
-    // Сброс для повторной попытки
-    setTimeout(() => {
-      initializeLetterGame();
-    }, 2500);
-  }
-}
-
-function resetLetterGame() {
-  letterGameState = 'initial';
-  correctLetterAnswer = '';
-  selectedLetterAnswer = '';
-  currentLetterOptions = [];
-}
-
-// Инициализация при открытии экрана g1Task1
-document.addEventListener('DOMContentLoaded', () => {
-  const g1Task1Screen = document.getElementById('g1Task1');
-  if (g1Task1Screen) {
-    const observer = new MutationObserver(() => {
-      if (g1Task1Screen.classList.contains('active')) {
-        initializeLetterGame();
-      }
-    });
-    observer.observe(g1Task1Screen, { attributes: true, attributeFilter: ['class'] });
-  }
-});
-
-// ========== 1-СЫНЫП ТАПСЫРМАЛАРЫ (СТАРЫЕ) ==========
+// ========== 1-СЫНЫП ТАПСЫРМАЛАРЫ ==========
 function startTask(type) {
   currentTask = type;
   showScreen('gamePlay');
@@ -688,10 +447,8 @@ function playCurrentAudio() {
 
   if (audioElement) {
     audioElement.currentTime = 0;
-    audioElement.play().catch(e => console.log("Audio play failed"))
-      .finally(() => {
-        setTimeout(() => { isPlaying = false; }, 500);
-      });
+    limitAudioDuration(audioElement);
+    setTimeout(() => { isPlaying = false; }, 500);
   } else {
     isPlaying = false;
   }
@@ -705,7 +462,7 @@ function playClapsSequence(count) {
   function playNext() {
     if (played < count) {
       clapAudio.currentTime = 0;
-      clapAudio.play().catch(e => console.log("Clap play failed"));
+      limitAudioDuration(clapAudio);
       played++;
       setTimeout(playNext, 600); // 600мс между хлопками
     } else {
