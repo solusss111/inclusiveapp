@@ -551,3 +551,41 @@ body.show-header .header {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/* Override Radial Item styles for cleaner look (User Request) */
+.radial-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.radial-item div {
+  font-size: 50px;
+  margin-bottom: 5px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.radial-item p {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.3); /* Slight background for text readability */
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+.radial-item:hover {
+  /* Keep existing transform logic but add scale */
+  transform: translate(calc(var(--dist) * cos(var(--angle))), calc(var(--dist) * sin(var(--angle)))) scale(1.25) !important;
+  background: rgba(255, 255, 255, 0.15) !important; /* Subtle highlight */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5) !important;
+  border-radius: 30px;
+}
+
+.radial-item:hover div {
+  transform: scale(1.1);
+}
+

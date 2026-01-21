@@ -158,70 +158,84 @@
     </div>
 
     <div id="grade0Menu" class="screen">
-      <div class="task-box">
-        <h2>🐣 0-сынып · Тапсырмалар</h2>
-        <p class="instruction">Дыбыстарды таны білу және алғашқы артикуляция</p>
+      <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
+        <!-- Left: Alippe -->
+        <div class="alippe-panel">
+          <div class="alippe-header">Әліппе</div>
+          <div class="alippe-grid"></div>
+        </div>
+        <!-- Right: Radial Menu -->
+        <div class="task-content-wrapper"
+          style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="radial-menu-container active" style="width: 700px; height: 700px;">
+            <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
+              style="cursor: pointer; width:160px; height:160px; font-size:28px; background: linear-gradient(135deg, #FDB813 0%, #F5A623 100%);">
+              0-сынып</div>
+            <!-- Inner Ring (r=180px) -->
+            <div class="radial-item" style="--angle: 0deg; --dist: 180px;" onclick="showScreen('g0Task1')">
+              <div>🔊</div>
+              <p>Тану</p>
+            </div>
+            <div class="radial-item" style="--angle: 72deg; --dist: 180px;" onclick="showScreen('g0Task2')">
+              <div>🎤</div>
+              <p>Дауыс</p>
+            </div>
+            <div class="radial-item" style="--angle: 144deg; --dist: 180px;" onclick="showScreen('g0Task3')">
+              <div>🎺</div>
+              <p>Аспап</p>
+            </div>
+            <div class="radial-item" style="--angle: 216deg; --dist: 180px;" onclick="showScreen('g0Task4')">
+              <div>🐴</div>
+              <p>Жануар</p>
+            </div>
+            <div class="radial-item" style="--angle: 288deg; --dist: 180px;" onclick="showScreen('g0Task5')">
+              <div>🎵</div>
+              <p>Ырғақ</p>
+            </div>
+
+            <!-- Outer Ring (r=310px) -->
+            <div class="radial-item" style="--angle: 20deg; --dist: 310px;" onclick="showScreen('g0Task6')">
+              <div>🌳</div>
+              <p>Табиғат</p>
+            </div>
+            <div class="radial-item" style="--angle: 60deg; --dist: 310px;" onclick="showScreen('g0Task7')">
+              <div>🗣️</div>
+              <p>Адам</p>
+            </div>
+            <div class="radial-item" style="--angle: 100deg; --dist: 310px;" onclick="showScreen('g0Task8')">
+              <div>🚗</div>
+              <p>Көлік</p>
+            </div>
+            <div class="radial-item" style="--angle: 140deg; --dist: 310px;" onclick="showScreen('g0Task9')">
+              <div>📱</div>
+              <p>Үй</p>
+            </div>
+            <div class="radial-item" style="--angle: 180deg; --dist: 310px;" onclick="showScreen('g0TaskWild')">
+              <div>🦁</div>
+              <p>Жабайы</p>
+            </div>
+            <div class="radial-item" style="--angle: 220deg; --dist: 310px;" onclick="showScreen('g0TaskTech2')">
+              <div>🔫</div>
+              <p>Тех-2</p>
+            </div>
+            <div class="radial-item" style="--angle: 260deg; --dist: 310px;" onclick="showScreen('g0TaskAppliance')">
+              <div>🔌</div>
+              <p>Тұрмыс</p>
+            </div>
+            <div class="radial-item" style="--angle: 300deg; --dist: 310px;" onclick="showScreen('g0TaskTech4')">
+              <div>🚜</div>
+              <p>Тех-4</p>
+            </div>
+            <div class="radial-item" style="--angle: 340deg; --dist: 310px;" onclick="showScreen('g0TaskEmotion')">
+              <div>😂</div>
+              <p>Эмоция</p>
+            </div>
+          </div>
+          <!-- Back Button -->
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')"
+            style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
+        </div>
       </div>
-
-      <div class="cards-grid">
-        <div class="card" onclick="playClick(); showScreen('g0Task1')">
-          <div class="card-icon">🔊</div>
-          <h3>Дыбысты тану</h3>
-          <p>Дыбыс бар ма, жоқ па?</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task2')">
-          <div class="card-icon">🎤</div>
-          <h3>Дауыс созу</h3>
-          <p>А, О, У созып айту</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task3')">
-          <div class="card-icon">🎺</div>
-          <h3>Аспаптар</h3>
-          <p>Музыкалық аспаптарды тану</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task4')">
-          <div class="card-icon">🐴</div>
-          <h3>Жануарлар дауысы</h3>
-          <p>Ат, сиыр, қой, мысық, ит</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task5')">
-          <div class="card-icon">🎵</div>
-          <h3>Музыка ырғағы</h3>
-          <p>Вальс пен марш</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task6')">
-          <div class="card-icon">🌳</div>
-          <h3>Табиғат дыбыстары</h3>
-          <p>Құс, су, жел</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task7')">
-          <div class="card-icon">🗣️</div>
-          <h3>Адам дыбыстары</h3>
-          <p>Күлу, жылау, жөтелу</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task8')">
-          <div class="card-icon">🚗</div>
-          <h3>Көліктер дыбысы</h3>
-          <p>Машина, ұшақ, пойыз</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g0Task9')">
-          <div class="card-icon">📱</div>
-          <h3>Үй дыбыстары</h3>
-          <p>Телефон, сағат, қоңырау</p>
-        </div>
-      </div>
-
-      <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')">
-        ⬅️ Артқа
-      </button>
     </div>
 
     <div id="g0Task1" class="screen">
@@ -283,20 +297,36 @@
 
           <div id="voiceFeedback" class="feedback"></div>
 
-          <!-- Train Animation (Hidden Initially) -->
-          <div id="voiceTrainContainer" style="display:none; text-align:center; padding: 20px;">
-            <div style="font-size: 80px; transition: transform 0.5s; transform: rotate(90deg);" id="trainIcon">🚂</div>
-            <div
-              style="width: 80%; max-width: 400px; height: 30px; background: rgba(255,255,255,0.3); border-radius: 15px; margin: 20px auto; position: relative; overflow: hidden;">
-              <div id="voiceProgressBar"
-                style="width: 0%; height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 15px; transition: width 0.3s; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">
-                0%</div>
+          <!-- VAD Libraries -->
+          <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.7/dist/bundle.min.js"></script>
+
+          <!-- Train Animation -->
+          <div id="voiceTrainContainer"
+            style="display:none; text-align:center; padding: 20px; position: relative; height: 150px; margin-top: 50px;">
+            <div style="width: 90%; max-width: 600px; margin: 0 auto; position: relative;">
+              <!-- Train Icon: Absolute positioned on top of the bar track -->
+              <!-- Initial left: 0%. Will update via JS to match progress -->
+              <div id="trainIcon"
+                style="font-size: 60px; position: absolute; bottom: 55px; left: 0%; transition: left 0.3s linear, transform 0.5s; transform: scaleX(-1); white-space: nowrap; z-index: 10;">
+                🚂</div>
+
+              <!-- Progress Bar Container -->
+              <div
+                style="width: 100%; height: 50px; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); border-radius: 25px; overflow: hidden; position: relative;">
+                <div id="voiceProgressBar"
+                  style="width: 0%; height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 25px; transition: width 0.3s linear; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px;">
+                  0%
+                </div>
+              </div>
             </div>
-            <p style="font-size: 24px; color: #333;"><span id="trainTimer"></span></p>
+
+            <p style="font-size: 24px; color: white; margin-top: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);"><span
+                id="trainTimer"></span></p>
           </div>
 
           <button class="btn btn-secondary" style="position:absolute; bottom:20px; left:20px;"
-            onclick="playClick(); showScreen('grade0Menu')">
+            onclick="playClick(); if(typeof stopVoiceGame === 'function') stopVoiceGame(); showScreen('grade0Menu')">
             ⬅️ Артқа
           </button>
         </div>
@@ -580,50 +610,55 @@
       </div>
     </div>
 
-    <!-- 1-СЫНЫП ТАПСЫРМАЛАРЫ -->
     <div id="grade1Menu" class="screen">
-      <div class="task-box">
-        <h2>🐶 1-сынып тапсырмалары</h2>
-        <p class="instruction">Күрделі деңгей - Дыбыс саны, дауыс жиілігі, темп</p>
+      <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
+        <!-- Left: Alippe -->
+        <div class="alippe-panel">
+          <div class="alippe-header">Әліппе</div>
+          <div class="alippe-grid"></div>
+        </div>
+        <!-- Right: Radial Menu -->
+        <div class="task-content-wrapper"
+          style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="radial-menu-container active" style="width: 600px; height: 600px;">
+            <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
+              style="cursor: pointer; width:160px; height:160px; font-size:28px; background: linear-gradient(135deg, #FDB813 0%, #F5A623 100%);">
+              1-сынып</div>
+
+            <div class="radial-item" style="--angle: 0deg; --dist: 220px;" onclick="startTask('claps')">
+              <div>🔢</div>
+              <p>Саны</p>
+            </div>
+            <div class="radial-item" style="--angle: 60deg; --dist: 220px;" onclick="startTask('pitch')">
+              <div>👥</div>
+              <p>Жиілігі</p>
+            </div>
+            <div class="radial-item" style="--angle: 120deg; --dist: 220px;"
+              onclick="initializeLetterGame(); showScreen('g1TaskLetters')">
+              <div>🅰️</div>
+              <p>Әріптер</p>
+            </div>
+            <div class="radial-item" style="--angle: 180deg; --dist: 220px;" onclick="startTask('tempo')">
+              <div>💃</div>
+              <p>Би</p>
+            </div>
+            <div class="radial-item" style="--angle: 240deg; --dist: 220px;"
+              onclick="playClick(); showScreen('g1Task1')">
+              <div>🎵</div>
+              <p>Дыбыс</p>
+            </div>
+            <div class="radial-item" style="--angle: 300deg; --dist: 220px;"
+              onclick="playClick(); showScreen('g1Task3')">
+              <div>💬</div>
+              <p>Сөздер</p>
+            </div>
+
+          </div>
+          <!-- Back Button -->
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')"
+            style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
+        </div>
       </div>
-      <div class="cards-grid">
-        <div class="card" onclick="startTask('claps')">
-          <div class="card-icon">🔢</div>
-          <h3>Дыбыс саны</h3>
-          <p>Бірену-Екеу-Үшеу</p>
-        </div>
-        <div class="card" onclick="startTask('pitch')">
-          <div class="card-icon">👥</div>
-          <h3>Дауыс жиілігі</h3>
-          <p>Төмен, Орта, Жоғары</p>
-        </div>
-        <div class="card" onclick="initializeLetterGame(); showScreen('g1TaskLetters')">
-          <div class="card-icon">🅰️</div>
-          <h3>Әріптер</h3>
-          <p>Әріптерді үйренеміз</p>
-        </div>
-        <div class="card" onclick="startTask('tempo')">
-          <div class="card-icon">💃</div>
-          <h3>Би ырғағы</h3>
-          <p>Тез - Баяу</p>
-        </div>
-        <div class="card" onclick="playClick(); showScreen('g1Task1')">
-          <div class="card-icon">🎵</div>
-          <h3>Дыбыс жиілігі</h3>
-          <p>Жоғары, төмен, орташа</p>
-        </div>
-        <div class="card" onclick="playClick(); showScreen('g1Task2')">
-          <div class="card-icon">🦁</div>
-          <h3>Жабайы жануарлар</h3>
-          <p>Дауыстарын ажырату</p>
-        </div>
-        <div class="card" onclick="playClick(); showScreen('g1Task3')">
-          <div class="card-icon">💬</div>
-          <h3>Таныс сөздер</h3>
-          <p>Сөздер, сөз тіркестері</p>
-        </div>
-      </div>
-      <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')">⬅️ Артқа</button>
     </div>
 
     <!-- 1-СЫНЫП ОЙЫН ЭКРАНЫ -->
@@ -841,55 +876,47 @@
       </div>
     </div>
 
-    <!-- 2-СЫНЫП ТАПСЫРМАЛАРЫ -->
     <div id="grade2Menu" class="screen">
-      <div class="task-box">
-        <h2>🚗 2-сынып · Тапсырмалар</h2>
-        <p class="instruction">Көліктер дыбыстары, буындар және дыбыстарды ажырату</p>
-      </div>
+      <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
+        <!-- Left: Alippe -->
+        <div class="alippe-panel">
+          <div class="alippe-header">Әліппе</div>
+          <div class="alippe-grid"></div>
+        </div>
+        <!-- Right: Radial Menu -->
+        <div class="task-content-wrapper"
+          style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="radial-menu-container active" style="width: 600px; height: 600px;">
+            <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
+              style="cursor: pointer; width:160px; height:160px; font-size:28px; background: linear-gradient(135deg, #FDB813 0%, #F5A623 100%);">
+              2-сынып</div>
 
-      <div class="cards-grid">
-        <div class="card" onclick="playClick(); showScreen('g2Task1')">
-          <div class="card-icon">🚗</div>
-          <h3>Көліктер дыбысы</h3>
-          <p>Машина, ұшақ, пойыз</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g2Task2')">
-          <div class="card-icon">👏</div>
-          <h3>Буындар</h3>
-          <p>Буын санын ажырату</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g2Task3')">
-          <div class="card-icon">🔤</div>
-          <h3>С-Ш, З-Ж айыру</h3>
-          <p>Ұқсас дыбыстарды тану</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g2Task4')">
-          <div class="card-icon">📐</div>
-          <h3>Математика тілі</h3>
-          <p>Артық, кем, қосу</p>
-        </div>
-        <div class="card" onclick="playClick(); showScreen('g2Task5')">
-          <div class="card-icon">⏱️</div>
-          <h3>Дыбыс сипаты</h3>
-          <p>Ұзақтық, қаттылық</p>
-        </div>
-        <div class="card" onclick="playClick(); showScreen('g2Task6')">
-          <div class="card-icon">🎭</div>
-          <h3>Музыкалық ертегілер</h3>
-          <p>Ертегілерді ажырату</p>
-        </div>
-        <div class="card" onclick="playClick(); showScreen('g2Task7')">
-          <div class="card-icon">🔫</div>
-          <h3>Техникалық дыбыстар</h3>
-          <p>Мылтық, пулемет</p>
+            <div class="radial-item" style="--angle: 0deg; --dist: 220px;" onclick="showScreen('g2Task2')">
+              <div>👏</div>
+              <p>Буындар</p>
+            </div>
+            <div class="radial-item" style="--angle: 72deg; --dist: 220px;" onclick="showScreen('g2Task3')">
+              <div>🔤</div>
+              <p>С-Ш</p>
+            </div>
+            <div class="radial-item" style="--angle: 144deg; --dist: 220px;" onclick="showScreen('g2Task4')">
+              <div>📐</div>
+              <p>Математика</p>
+            </div>
+            <div class="radial-item" style="--angle: 216deg; --dist: 220px;" onclick="showScreen('g2Task5')">
+              <div>⏱️</div>
+              <p>Сипаты</p>
+            </div>
+            <div class="radial-item" style="--angle: 288deg; --dist: 220px;" onclick="showScreen('g2Task6')">
+              <div>🎭</div>
+              <p>Ертегілер</p>
+            </div>
+          </div>
+          <!-- Back Button -->
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')"
+            style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
         </div>
       </div>
-
-      <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')">⬅️ Артқа</button>
     </div>
 
     <!-- 2-СЫНЫП: ТАПСЫРМА 1 - КӨЛІКТЕР -->
@@ -1156,50 +1183,46 @@
 
     <!-- 3-СЫНЫП ТАПСЫРМАЛАРЫ -->
     <div id="grade3Menu" class="screen">
-      <div class="task-box">
-        <h2>🎵 3-сынып · Тапсырмалар</h2>
-        <p class="instruction">Музыка, интонация және екпін</p>
-      </div>
-
-      <div class="cards-grid">
-        <div class="card" onclick="playClick(); showScreen('g3Task1')">
-          <div class="card-icon">🎼</div>
-          <h3>Музыкалық ырғақ</h3>
-          <p>Әуеннің қарқыны</p>
+      <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
+        <!-- Left: Alippe -->
+        <div class="alippe-panel">
+          <div class="alippe-header">Әліппе</div>
+          <div class="alippe-grid"></div>
         </div>
+        <!-- Right: Radial Menu -->
+        <div class="task-content-wrapper"
+          style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="radial-menu-container active" style="width: 600px; height: 600px;">
+            <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
+              style="cursor: pointer; width:160px; height:160px; font-size:28px; background: linear-gradient(135deg, #FDB813 0%, #F5A623 100%);">
+              3-сынып</div>
 
-        <div class="card" onclick="playClick(); showScreen('g3Task2')">
-          <div class="card-icon">😊</div>
-          <h3>Интонация</h3>
-          <p>Сұрақ, хабарлау, леп</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g3Task3')">
-          <div class="card-icon">📝</div>
-          <h3>Екпін</h3>
-          <p>Сөздегі екпінді буын</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g3Task4')">
-          <div class="card-icon">&#128268;</div>
-          <h3>Тұрмыстық техника</h3>
-          <p>Тоңазытқыш, фен...</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g3Task5')">
-          <div class="card-icon">🗣️</div>
-          <h3>Сөздерді тану</h3>
-          <p>Таныс сөз, сұрақ...</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g3Task6')">
-          <div class="card-icon">🎤</div>
-          <h3>Ұлттық әндер</h3>
-          <p>Қазақ, орыс, ағылшын</p>
+            <div class="radial-item" style="--angle: 0deg; --dist: 220px;" onclick="showScreen('g3Task1')">
+              <div>🎼</div>
+              <p>Ырғақ</p>
+            </div>
+            <div class="radial-item" style="--angle: 72deg; --dist: 220px;" onclick="showScreen('g3Task2')">
+              <div>😊</div>
+              <p>Интонация</p>
+            </div>
+            <div class="radial-item" style="--angle: 144deg; --dist: 220px;" onclick="showScreen('g3Task3')">
+              <div>📝</div>
+              <p>Екпін</p>
+            </div>
+            <div class="radial-item" style="--angle: 216deg; --dist: 220px;" onclick="showScreen('g3Task5')">
+              <div>🗣️</div>
+              <p>Сөздер</p>
+            </div>
+            <div class="radial-item" style="--angle: 288deg; --dist: 220px;" onclick="showScreen('g3Task6')">
+              <div>🎤</div>
+              <p>Әндер</p>
+            </div>
+          </div>
+          <!-- Back Button -->
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')"
+            style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
         </div>
       </div>
-
-      <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')">⬅️ Артқа</button>
     </div>
 
     <!-- 3-СЫНЫП: ТАПСЫРМА 1 - МУЗЫКАЛЫҚ ЫРҒАҚ -->
@@ -1367,56 +1390,46 @@
 
     <!-- 4-СЫНЫП ТАПСЫРМАЛАРЫ -->
     <div id="grade4Menu" class="screen">
-      <div class="task-box">
-        <h2>🎤 4-сынып · Тапсырмалар</h2>
-        <p class="instruction">Әңгімелер, диалог және мәтін оқу</p>
-      </div>
-
-      <div class="cards-grid">
-        <div class="card" onclick="playClick(); showScreen('g4Task1')">
-          <div class="card-icon">📖</div>
-          <h3>Әңгімелерді тыңдау</h3>
-          <p>Әңгіменің мазмұнын түсіну</p>
+      <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
+        <!-- Left: Alippe -->
+        <div class="alippe-panel">
+          <div class="alippe-header">Әліппе</div>
+          <div class="alippe-grid"></div>
         </div>
+        <!-- Right: Radial Menu -->
+        <div class="task-content-wrapper"
+          style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="radial-menu-container active" style="width: 600px; height: 600px;">
+            <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
+              style="cursor: pointer; width:160px; height:160px; font-size:28px; background: linear-gradient(135deg, #FDB813 0%, #F5A623 100%);">
+              4-сынып</div>
 
-        <div class="card" onclick="playClick(); showScreen('g4Task2')">
-          <div class="card-icon">💬</div>
-          <h3>Диалог</h3>
-          <p>Сұхбат және сөйлесім</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g4Task3')">
-          <div class="card-icon">📚</div>
-          <h3>Мәтін оқу</h3>
-          <p>Мәнерлеп оқу (прогресс)</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g4Task4')">
-          <div class="card-icon">🚜</div>
-          <h3>Техника</h3>
-          <p>Трактор, ара, машина</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g4Task5')">
-          <div class="card-icon">🥁</div>
-          <h3>Күрделі ырғақ</h3>
-          <p>4+ соққы</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g4Task6')">
-          <div class="card-icon">🧭</div>
-          <h3>Дыбыс бағыты</h3>
-          <p>Оң, сол, алды, арты</p>
-        </div>
-
-        <div class="card" onclick="playClick(); showScreen('g4Task7')">
-          <div class="card-icon">&#128483;</div>
-          <h3>Адам эмоциясы</h3>
-          <p>Күлкі, жылау, жөтелу</p>
+            <div class="radial-item" style="--angle: 0deg; --dist: 220px;" onclick="showScreen('g4Task1')">
+              <div>📖</div>
+              <p>Әңгіме</p>
+            </div>
+            <div class="radial-item" style="--angle: 72deg; --dist: 220px;" onclick="showScreen('g4Task2')">
+              <div>💬</div>
+              <p>Диалог</p>
+            </div>
+            <div class="radial-item" style="--angle: 144deg; --dist: 220px;" onclick="showScreen('g4Task3')">
+              <div>📚</div>
+              <p>Мәтін</p>
+            </div>
+            <div class="radial-item" style="--angle: 216deg; --dist: 220px;" onclick="showScreen('g4Task5')">
+              <div>🥁</div>
+              <p>Ырғақ</p>
+            </div>
+            <div class="radial-item" style="--angle: 288deg; --dist: 220px;" onclick="showScreen('g4Task6')">
+              <div>🧭</div>
+              <p>Бағыт</p>
+            </div>
+          </div>
+          <!-- Back Button -->
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')"
+            style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
         </div>
       </div>
-
-      <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')">⬅️ Артқа</button>
     </div>
 
     <!-- 4-СЫНЫП: ТАПСЫРМА 1 - ӘҢГІМЕЛЕРДІ ТЫҢДАУ -->
@@ -1635,6 +1648,140 @@
         </div>
         <div id="g4t7Feedback" class="feedback"></div>
         <button class="btn btn-secondary" onclick="playClick(); showScreen('grade4Menu')">⬅️ Артқа</button>
+      </div>
+    </div>
+
+    <!-- G0 ADDITIONS -->
+    <div id="g0TaskWild" class="screen">
+      <div class="task-box">
+        <h2>🦁 Жабайы жануарлар</h2>
+        <p class="instruction">Жануарды дыбысынан тап!</p>
+        <button class="btn btn-success" onclick="playRandomWildAnimalG0()" style="margin: 30px 0;">🔊 Тыңдау</button>
+        <div class="images-grid">
+          <div class="image-card" onclick="checkWildAnimalG0('lion')">
+            <div class="emoji">🦁</div>
+            <h4>Арыстан</h4>
+          </div>
+          <div class="image-card" onclick="checkWildAnimalG0('wolf')">
+            <div class="emoji">🐺</div>
+            <h4>Қасқыр</h4>
+          </div>
+          <div class="image-card" onclick="checkWildAnimalG0('bear')">
+            <div class="emoji">🐻</div>
+            <h4>Аю</h4>
+          </div>
+          <div class="image-card" onclick="checkWildAnimalG0('elephant')">
+            <div class="emoji">🐘</div>
+            <h4>Піл</h4>
+          </div>
+        </div>
+        <div id="g0tWildFeedback" class="feedback"></div>
+        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+      </div>
+    </div>
+
+    <div id="g0TaskTech2" class="screen">
+      <div class="task-box">
+        <h2>🔫 Техникалық дыбыстар</h2>
+        <p class="instruction">Дыбысты тап!</p>
+        <button class="btn btn-success" onclick="playRandomTechnicalNoiseG0()" style="margin: 30px 0;">🔊
+          Тыңдау</button>
+        <div class="images-grid">
+          <div class="image-card" onclick="checkTechnicalNoiseG0('rifle')">
+            <div class="emoji">🔫</div>
+            <h4>Мылтық</h4>
+          </div>
+          <div class="image-card" onclick="checkTechnicalNoiseG0('machinegun')">
+            <div class="emoji">💥</div>
+            <h4>Пулемет</h4>
+          </div>
+          <div class="image-card" onclick="checkTechnicalNoiseG0('cannon')">
+            <div class="emoji">💣</div>
+            <h4>Зеңбірек</h4>
+          </div>
+        </div>
+        <div id="g0tTech2Feedback" class="feedback"></div>
+        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+      </div>
+    </div>
+
+    <div id="g0TaskAppliance" class="screen">
+      <div class="task-box">
+        <h2>🔌 Тұрмыстық техника</h2>
+        <p class="instruction">Құралды тап!</p>
+        <button class="btn btn-success" onclick="playRandomApplianceG0()" style="margin: 30px 0;">🔊 Тыңдау</button>
+        <div class="images-grid">
+          <div class="image-card" onclick="checkApplianceG0('fridge')">
+            <div class="emoji">❄️</div>
+            <h4>Тоңазытқыш</h4>
+          </div>
+          <div class="image-card" onclick="checkApplianceG0('vacuum')">
+            <div class="emoji">🧹</div>
+            <h4>Шаңсорғыш</h4>
+          </div>
+          <div class="image-card" onclick="checkApplianceG0('washing_machine')">
+            <div class="emoji">🧺</div>
+            <h4>Киім жуғыш</h4>
+          </div>
+          <div class="image-card" onclick="checkApplianceG0('hair_dryer')">
+            <div class="emoji">💨</div>
+            <h4>Фен</h4>
+          </div>
+        </div>
+        <div id="g0tApplianceFeedback" class="feedback"></div>
+        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+      </div>
+    </div>
+
+    <div id="g0TaskTech4" class="screen">
+      <div class="task-box">
+        <h2>🚜 Техника дыбыстары</h2>
+        <p class="instruction">Техниканы тап!</p>
+        <button class="btn btn-success" onclick="playRandomTechG0()" style="margin: 30px 0;">🔊 Тыңдау</button>
+        <div class="images-grid">
+          <div class="image-card" onclick="checkTechG0('tractor')">
+            <div class="emoji">🚜</div>
+            <h4>Трактор</h4>
+          </div>
+          <div class="image-card" onclick="checkTechG0('saw')">
+            <div class="emoji">🪚</div>
+            <h4>Ара</h4>
+          </div>
+          <div class="image-card" onclick="checkTechG0('sewing')">
+            <div class="emoji">🧵</div>
+            <h4>Тігін машинасы</h4>
+          </div>
+        </div>
+        <div id="g0tTech4Feedback" class="feedback"></div>
+        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+      </div>
+    </div>
+
+    <div id="g0TaskEmotion" class="screen">
+      <div class="task-box">
+        <h2>😂 Адам эмоциясы</h2>
+        <p class="instruction">Эмоцияны немесе әрекетті тап!</p>
+        <button class="btn btn-success" onclick="playRandomHumanSoundG0()" style="margin: 30px 0;">🔊 Тыңдау</button>
+        <div class="images-grid">
+          <div class="image-card" onclick="checkHumanSoundG0('laugh')">
+            <div class="emoji">😂</div>
+            <h4>Күлкі</h4>
+          </div>
+          <div class="image-card" onclick="checkHumanSoundG0('cry')">
+            <div class="emoji">😢</div>
+            <h4>Жылау</h4>
+          </div>
+          <div class="image-card" onclick="checkHumanSoundG0('cough')">
+            <div class="emoji">😷</div>
+            <h4>Жөтелу</h4>
+          </div>
+          <div class="image-card" onclick="checkHumanSoundG0('sneeze')">
+            <div class="emoji">🤧</div>
+            <h4>Түшкіру</h4>
+          </div>
+        </div>
+        <div id="g0tEmotionFeedback" class="feedback"></div>
+        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
       </div>
     </div>
 

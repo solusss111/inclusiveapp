@@ -1,123 +1,126 @@
-СПИСОК НЕОБХОДИМЫХ АУДИОФАЙЛОВ
-===============================
-Скачайте соответствующие звуки (например, с pixabay.com или freesound.org) и сохраните их в указанные папки с указанными именами.
+# Kazakh Letters (Alippe)
+sounds/letters/Alippe_а.mp3 А Алма
+sounds/letters/Alippe_ә.mp3 Ә Ә Әтеш
+sounds/letters/Alippe_б.mp3 Б Балық
+sounds/letters/Alippe_в.mp3 В Велосипед
+sounds/letters/Alippe_г.mp3 Г Гүл
+sounds/letters/Alippe_ғ.mp3 Ғ Ғалым
+sounds/letters/Alippe_д.mp3 Д Дауыл   
+sounds/letters/Alippe_е.mp3
+sounds/letters/Alippe_ё.mp3
+sounds/letters/Alippe_ж.mp3
+sounds/letters/Alippe_з.mp3
+sounds/letters/Alippe_и.mp3
+sounds/letters/Alippe_й.mp3
+sounds/letters/Alippe_к.mp3
+sounds/letters/Alippe_қ.mp3
+sounds/letters/Alippe_л.mp3
+sounds/letters/Alippe_м.mp3
+sounds/letters/Alippe_н.mp3
+sounds/letters/Alippe_ң.mp3
+sounds/letters/Alippe_о.mp3
+sounds/letters/Alippe_ө.mp3
+sounds/letters/Alippe_п.mp3
+sounds/letters/Alippe_р.mp3
+sounds/letters/Alippe_с.mp3
+sounds/letters/Alippe_т.mp3
+sounds/letters/Alippe_у.mp3
+sounds/letters/Alippe_ұ.mp3
+sounds/letters/Alippe_ү.mp3
+sounds/letters/Alippe_ф.mp3
+sounds/letters/Alippe_х.mp3
+sounds/letters/Alippe_һ.mp3
+sounds/letters/Alippe_ц.mp3
+sounds/letters/Alippe_ч.mp3
+sounds/letters/Alippe_ш.mp3
+sounds/letters/Alippe_щ.mp3
+sounds/letters/Alippe_ы.mp3
+sounds/letters/Alippe_і.mp3
+sounds/letters/Alippe_э.mp3
+sounds/letters/Alippe_ю.mp3
+sounds/letters/Alippe_я.mp3
 
-БОНУС: Для голосовых заданий (буындар, интонация, рассказы) лучше записать голос самостоятельно на диктофон телефона и перекинуть сюда!
+# Human Sounds (Grade 0 Task 7)
+sounds/human/laugh.mp3
+sounds/human/cry.mp3
+sounds/human/sneeze.mp3
+sounds/human/cough.mp3
 
-1. ТРАНСПОРТ (sounds/transport/)
---------------------------------
-[ ] car.mp3        - Звук машины (мотор или сигнал)*
-[ ] plane.mp3      - Звук самолета*
-[ ] train.mp3      - Звук поезда*
-[ ] motorcycle.mp3 - Звук мотоцикла*
+# Wild Animals (Grade 1 Task 2)
+sounds/wild_animals/lion.mp3
+sounds/wild_animals/wolf.mp3
+sounds/wild_animals/bear.mp3
+sounds/wild_animals/elephant.mp3
 
-2. БУЫНДАР (sounds/syllables/)
---------------------------------
-(Запишите эти слова голосом)
-[ ] word_1.mp3     - 1 буын (мысалы: "Доп")
-[ ] word_2.mp3     - 2 буын (мысалы: "Алма")
-[ ] word_3.mp3     - 3 буын (мысалы: "Машина")
-[ ] word_4.mp3     - 4 буын (мысалы: "Балапан-дар")
+MISSING AUDIO FILES REPORT
+==========================
+The following audio files or directories are missing from the 'sounds' folder, which are required for the new Grade 1-4 tasks to function correctly.
 
-3. ӘРІПТЕР ДЫБЫСЫ (sounds/letters/) - 1-СЫНЫП
------------------------------------
-(Файлды "letter_әріп.mp3" деп атаңыз, бәрі кіші әріппен)
-[ ] letter_а.mp3
-[ ] letter_ә.mp3
-[ ] letter_б.mp3
-[ ] letter_в.mp3
-[ ] letter_г.mp3
-[ ] letter_ғ.mp3
-[ ] letter_д.mp3
-[ ] letter_е.mp3
-[ ] letter_ё.mp3
-[ ] letter_ж.mp3
-[ ] letter_з.mp3
-[ ] letter_и.mp3
-[ ] letter_й.mp3
-[ ] letter_к.mp3
-[ ] letter_қ.mp3
-[ ] letter_л.mp3
-[ ] letter_м.mp3
-[ ] letter_н.mp3
-[ ] letter_ң.mp3
-[ ] letter_о.mp3
-[ ] letter_ө.mp3
-[ ] letter_п.mp3
-[ ] letter_р.mp3
-[ ] letter_с.mp3
-[ ] letter_т.mp3
-[ ] letter_у.mp3
-[ ] letter_ұ.mp3
-[ ] letter_ү.mp3
-[ ] letter_ф.mp3
-[ ] letter_х.mp3
-[ ] letter_һ.mp3
-[ ] letter_ц.mp3
-[ ] letter_ч.mp3
-[ ] letter_ш.mp3
-[ ] letter_щ.mp3
-[ ] letter_ъ.mp3
-[ ] letter_ы.mp3
-[ ] letter_і.mp3
-[ ] letter_ь.mp3
-[ ] letter_э.mp3
-[ ] letter_ю.mp3
-[ ] letter_я.mp3
+1. Grade 1 - Task 1 (Sound Frequency):
+   - sounds/sound_frequency/low.mp3 (Missing)
+   * Note: 'high' and 'mid' have been mapped to files in 'sounds/voice frequency'.
 
-4. МУЗЫКАЛЫҚ ЫРҒАҚ (sounds/music_tempo/)
-----------------------------------------
-[ ] fast.mp3       - Жылдам әуен (Fast music)
-[ ] medium.mp3     - Орташа әуен (Medium tempo music)
-[ ] slow.mp3       - Баяу әуен (Slow music)
+2. Grade 1 - Task 2 (Wild Animals):
+   - sounds/wild_animals/* (Folder missing or empty of wild animals like lion, wolf, bear, elephant)
+   * Note: 'sounds/animals' contains domestic animals (cow, dog, cat...).
 
-5. ИНТОНАЦИЯ (sounds/intonation/)
----------------------------------
-(Запишите одну фразу с разной интонацией)
-[ ] question.mp3   - Сұраулы (мысалы: "Бүгін күн ашық па?")
-[ ] statement.mp3  - Хабарлы (мысалы: "Бүгін күн ашық.")
-[ ] exclamation.mp3 - Лепті (мысалы: "Қандай тамаша күн!")
+3. Grade 1 - Task 3 (Familiar Words):
+   - sounds/familiar_words/* (Folder missing)
 
-6. ЕКПІН (sounds/stress/)
--------------------------
-[ ] stress_1.mp3   - 1-ші буынға екпін түсетін сөз
-[ ] stress_2.mp3   - 2-ші буынға екпін түсетін сөз
-[ ] stress_3.mp3   - 3-ші буынға екпін түсетін сөз
+4. Grade 2 - Task 2 (Syllables):
+   - sounds/syllables/* (Folder empty)
 
-7. ӘҢГІМЕЛЕР (sounds/stories/)
-------------------------------
-[ ] story_1.mp3    - Қысқаша әңгіме №1
-[ ] story_2.mp3    - Қысқаша әңгіме №2
-[ ] story_3.mp3    - Қысқаша әңгіме №3
+5. Grade 2 - Task 3 (S-Sh / Z-Zh):
+   - sounds/letters/* (Files word_s.mp3, word_sh.mp3 etc. missing)
+   * Note: 'sounds/letters' contains alphabet letters (letter_a.mp3...), not specific S-Sh differentiation words.
 
-8. ДИАЛОГ (sounds/dialog/)
---------------------------
-[ ] child.mp3      - Баланың дауысы
-[ ] adult.mp3      - Ересектің дауысы
-[ ] both.mp3       - Екеуінің диалогы
+6. Grade 2 - Task 4 (Math Language):
+   - sounds/math/* (Folder empty)
 
-9. АДАМ ДЫБЫСТАРЫ (sounds/human/) - 0-СЫНЫП
------------------------------------------
-[ ] laugh.mp3      - Күлкі дауысы (Laughing)
-[ ] cry.mp3        - Жылау дауысы (Crying)
-[ ] sneeze.mp3     - Түшкіру (Sneezing)
-[ ] cough.mp3      - Жөтелу (Coughing)
+7. Grade 2 - Task 5 (Sound Characteristics):
+   - sounds/sound_properties/* (Folder missing)
 
-10. ТҰРМЫСТЫҚ ДЫБЫСТАР (sounds/home/) - 1-СЫНЫП (ҚОСЫМША)
--------------------------------------------------------
-[ ] doorbell.mp3    - Есік қоңырауы (Doorbell)
-[ ] school_bell.mp3 - Мектеп қоңырауы (School bell)
+8. Grade 2 - Task 6 (Musical Fairy Tales):
+   - sounds/musical_tales/* (Folder missing)
 
-11. МАТЕМАТИКА ТІЛІ (sounds/math/) - 2-СЫНЫП
-------------------------------------------
-(Запишите эти слова голосом)
-[ ] plus.mp3       - "Қосу"
-[ ] minus.mp3      - "Азайту"
-[ ] more.mp3       - "Артық"
-[ ] less.mp3       - "Кем"
+9. Grade 2 - Task 7 (Technical Sounds):
+   - sounds/technical_noises/* (Folder missing)
 
-12. ТЕХНИКА ДЫБЫСТАРЫ (sounds/technical/) - 4-СЫНЫП
--------------------------------------------------
-[ ] tractor.mp3         - Трактор дыбысы
-[ ] saw.mp3             - Ара дыбысы (Saw)
-[ ] sewing_machine.mp3  - Тігін машинасы (Sewing machine)
+10. Grade 3 - Task 1 (Music Rhythm):
+    - sounds/music_tempo/* (Folder empty)
+
+11. Grade 3 - Task 2 (Intonation):
+    - sounds/intonation/* (Folder empty)
+
+12. Grade 3 - Task 3 (Stress):
+    - sounds/stress/* (Folder empty)
+
+13. Grade 3 - Task 4 (Appliances):
+    - sounds/appliances/* (Folder missing)
+    * Note: 'sounds/Household sounds' contains clock, phone, bike. Missing fridge, vacuum, washing_machine, hair_dryer.
+
+14. Grade 3 - Task 5 (Word Recognition):
+    - sounds/word_types/* (Folder missing)
+
+15. Grade 3 - Task 6 (National Songs):
+    - sounds/national_songs/* (Folder missing)
+
+16. Grade 4 - Task 1 (Stories):
+    - sounds/stories/* (Folder empty)
+
+17. Grade 4 - Task 2 (Dialog):
+    - sounds/dialog/* (Folder empty)
+
+18. Grade 4 - Task 4 (Technique sounds):
+    - sounds/technical/* (Folder empty) (tractor, saw...)
+
+19. Grade 4 - Task 5 (Complex Rhythm):
+    - sounds/complex_rhythms/* (Folder missing)
+
+20. Grade 4 - Task 6 (Sound Direction):
+    - sounds/directions/* (Folder missing)
+
+21. Grade 4 - Task 7 (Human Emotions):
+    - sounds/human_complex/* (Folder missing)
+
+Please populate these folders with the appropriate .mp3 files as referenced in 'grade234-functions.js'.

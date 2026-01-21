@@ -344,10 +344,10 @@ function checkHumanSound(choice) {
 }
 
 // ========== 0-СЫНЫП: ТАПСЫРМА 8 - КӨЛІКТЕР ДЫБЫСЫ ==========
-const vehicles = ['car', 'plane', 'train', 'motorcycle'];
+// ========== 0-СЫНЫП: ТАПСЫРМА 8 - КӨЛІКТЕР ДЫБЫСЫ ==========
+const vehicles = ['car', 'motorcycle', 'plane', 'train'];
 
 function playRandomVehicle() {
-  const vehicles = ['car', 'motorcycle', 'plane', 'train'];
   currentSoundTarget = vehicles[Math.floor(Math.random() * vehicles.length)];
   const feedback = document.getElementById('g0t8Feedback');
   feedback.innerHTML = "🚗 Көлік дыбысы...";
@@ -355,14 +355,21 @@ function playRandomVehicle() {
   // Load audio from sounds/transport/ folder
   const audio = new Audio(`sounds/transport/${currentSoundTarget}.mp3`);
   audio.play().catch(e => console.error('Vehicle audio error:', e));
+
+  // Shuffle cards
+  shuffleCardsInTask('g0Task8');
 }
 
 function checkVehicle0(choice) {
   const feedback = document.getElementById('g0t8Feedback');
+
+  // Если игра не начата (не нажали "Тыңдау"), просто воспроизводим звук предмета
   if (!currentSoundTarget) {
-    feedback.innerHTML = "Алдымен дыбысты тыңдаңыз!";
+    const audio = new Audio(`sounds/transport/${choice}.mp3`);
+    audio.play().catch(e => console.error('Preview audio error:', e));
     return;
   }
+
   if (choice === currentSoundTarget) {
     feedback.innerHTML = "Дұрыс! Бұл - " + choice;
     feedback.className = "feedback success";
@@ -389,20 +396,35 @@ function playRandomHomeSound() {
     'clock': 'clock.mp3',
     'bike': 'bike.mp3',
     'doorbell': 'doorbell.mp3',
-    'schoolbell': 'school_bell.mp3'  // Note: underscore in filename
+    'schoolbell': 'school_bell.mp3'
   };
 
   const filename = audioFileMap[currentSoundTarget];
   const audio = new Audio(`sounds/Household sounds/${filename}`);
   audio.play().catch(e => console.error('Home sound audio error:', e));
+
+  // Shuffle cards
+  shuffleCardsInTask('g0Task9');
 }
 
 function checkHomeSound0(choice) {
   const feedback = document.getElementById('g0t9Feedback');
+
+  // Preview sound if game not started
   if (!currentSoundTarget) {
-    feedback.innerHTML = "Алдымен дыбысты тыңдаңыз!";
+    const audioFileMap = {
+      'phone': 'phone.mp3',
+      'clock': 'clock.mp3',
+      'bike': 'bike.mp3',
+      'doorbell': 'doorbell.mp3',
+      'schoolbell': 'school_bell.mp3'
+    };
+    const filename = audioFileMap[choice];
+    const audio = new Audio(`sounds/Household sounds/${filename}`);
+    audio.play().catch(e => console.error('Preview audio error:', e));
     return;
   }
+
   if (choice === currentSoundTarget) {
     feedback.innerHTML = "Дұрыс! Өте жақсы!";
     feedback.className = "feedback success";
@@ -412,6 +434,18 @@ function checkHomeSound0(choice) {
     playError();
     feedback.innerHTML = "Қате! Қайта тыңдап көріңіз.";
     feedback.className = "feedback error";
+  }
+}
+
+// Helper to shuffle cards in a task screen
+function shuffleCardsInTask(screenId) {
+  const screen = document.getElementById(screenId);
+  if (!screen) return;
+  const grid = screen.querySelector('.images-grid');
+  if (!grid) return;
+
+  for (let i = grid.children.length; i >= 0; i--) {
+    grid.appendChild(grid.children[Math.random() * i | 0]);
   }
 }
 
