@@ -43,27 +43,7 @@ sounds/Alippe/Alippe_э.mp3
 sounds/Alippe/Alippe_ю.mp3
 sounds/Alippe/Alippe_я.mp3
 
-# 1. Common / Interface
-sounds/success.mp3
-sounds/error.mp3
 
-
-# Task 7: Human Sounds
-sounds/human/laugh.mp3
-sounds/human/cry.mp3
-sounds/human/sneeze.mp3
-sounds/human/cough.mp3
-
-# Task Wild Animals (G0)
-sounds/wild_animals/lion.mp3
-sounds/wild_animals/wolf.mp3
-sounds/wild_animals/bear.mp3
-sounds/wild_animals/elephant.mp3
-
-# Task Technical 2 (G0)
-sounds/technical_noises/rifle.mp3
-sounds/technical_noises/machine_gun.mp3
-sounds/technical_noises/cannon.mp3
 
 # Task Appliances (G0)
 sounds/appliances/fridge.mp3
@@ -76,9 +56,6 @@ sounds/technical/tractor.mp3
 sounds/technical/saw.mp3
 sounds/technical/sewing_machine.mp3
 
-# Task Emotions (G0)
-# (Uses same human sounds)
-
 # 3. Grade 1 Tasks
 # Task 1: Sound Frequency
 sounds/sound_frequency/low.mp3
@@ -88,13 +65,6 @@ sounds/familiar_words/hello.mp3
 sounds/familiar_words/goodbye.mp3
 sounds/familiar_words/thankyou.mp3
 sounds/familiar_words/good_morning.mp3
-
-# 4. Grade 2 Tasks
-# Task 2: Syllables
-sounds/syllables/1_syllable.mp3
-sounds/syllables/2_syllables.mp3
-sounds/syllables/3_syllables.mp3
-
 
 # Task 6: Musical Tales
 sounds/musical_tales/red_riding_hood.mp3
@@ -124,8 +94,8 @@ sounds/word_types/task.mp3
 
 # Task 6: National Songs
 sounds/national_songs/kazakh.mp3
-sounds/national_songs/kazakh1.mp3
-sounds/national_songs/kazakh2.mp3
+sounds/national_songs/english.mp3
+sounds/national_songs/russian.mp3
 
 # 6. Grade 4 Tasks
 # Task 1: Stories
@@ -145,29 +115,22 @@ sounds/directions/right.mp3
 sounds/directions/front.mp3
 sounds/directions/back.mp3
 
-index2.html:46  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/fast.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:46  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/slow.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:46  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/tractor.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:46  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/saw.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:46  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/sewing_machine.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:73  GET file:///C:/Users/user/Desktop/simplesite/sounds/home/school_bell.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:73  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/fast.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:73  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/slow.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:73  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/tractor.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:55  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/fast.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:55  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/slow.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:55  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/tractor.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:55  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/saw.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:55  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/sewing_machine.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:301  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/fast.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:301  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/slow.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:301  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/tractor.mp3 net::ERR_FILE_NOT_FOUND
 index2.html:301  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/saw.mp3 net::ERR_FILE_NOT_FOUND
 index2.html:301  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical/sewing_machine.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:771  GET file:///C:/Users/user/Desktop/simplesite/sounds/wild_animals/lion.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:771  GET file:///C:/Users/user/Desktop/simplesite/sounds/wild_animals/wolf.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:771  GET file:///C:/Users/user/Desktop/simplesite/sounds/wild_animals/bear.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:771  GET file:///C:/Users/user/Desktop/simplesite/sounds/wild_animals/elephant.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/hello.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/goodbye.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/thankyou.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/good_morning.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/red_riding_hood.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/pinocchio.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/three_bears.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/snow_white.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical_noises/rifle.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical_noises/machine_gun.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1801  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical_noises/cannon.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/hello.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/goodbye.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/thankyou.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/good_morning.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/red_riding_hood.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/pinocchio.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/three_bears.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/snow_white.mp3 net::ERR_FILE_NOT_FOUND
+index2.html:1718  GET file:///C:/Users/user/Desktop/simplesite/sounds/technical_noises/cannon.mp3 net::ERR_FILE_NOT_FOUND

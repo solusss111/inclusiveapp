@@ -560,21 +560,22 @@
             <audio id="trainAudio" src="sounds/transport/train.mp3"></audio>
 
             <div class="letter-circle-container active" style="width: 500px; height: 500px; position: relative;">
-              <div class="center-circle" onclick="playRandomVehicle()">🔊</div>
+              <div class="center-circle" onclick="startVehicleGame()">🔊</div>
 
-              <div class="option-circle" style="--angle: 45deg; --dist: 220px;" onclick="checkVehicle0('car')">
+              <div class="option-circle" style="--angle: 45deg; --dist: 220px;" onclick="verifyVehicleChoice('car')">
                 <div style="font-size: 50px;">🚗</div>
                 <p style="margin:0; font-size:16px;">Машина</p>
               </div>
-              <div class="option-circle" style="--angle: 135deg; --dist: 220px;" onclick="checkVehicle0('plane')">
+              <div class="option-circle" style="--angle: 135deg; --dist: 220px;" onclick="verifyVehicleChoice('plane')">
                 <div style="font-size: 50px;">✈️</div>
                 <p style="margin:0; font-size:16px;">Ұшақ</p>
               </div>
-              <div class="option-circle" style="--angle: 225deg; --dist: 220px;" onclick="checkVehicle0('train')">
+              <div class="option-circle" style="--angle: 225deg; --dist: 220px;" onclick="verifyVehicleChoice('train')">
                 <div style="font-size: 50px;">🚂</div>
                 <p style="margin:0; font-size:16px;">Пойыз</p>
               </div>
-              <div class="option-circle" style="--angle: 315deg; --dist: 220px;" onclick="checkVehicle0('motorcycle')">
+              <div class="option-circle" style="--angle: 315deg; --dist: 220px;"
+                onclick="verifyVehicleChoice('motorcycle')">
                 <div style="font-size: 50px;">🏍️</div>
                 <p style="margin:0; font-size:16px;">Мотоцикл</p>
               </div>

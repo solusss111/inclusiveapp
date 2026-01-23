@@ -139,6 +139,70 @@ function checkSound(userAnswer) {
 }
 
 // ========== 0-СЫНЫП: ТАПСЫРМА 2 - ДАУЫС СОЗУ ==========
+// Helper: Calculate RMS (Volume)
+function calcRMS(buffer) {
+  let sum = 0;
+  for (let i = 0; i < buffer.length; i++) {
+    sum += buffer[i] * buffer[i];
+  }
+  return Math.sqrt(sum / buffer.length);
+}
+
+// Helper: Autocorrelation for Pitch Detection
+let autocorrBuffer = null;
+
+function autoCorrelate(buffer, sampleRate) {
+  const SIZE = buffer.length;
+  const rms = calcRMS(buffer);
+  if (rms < 0.015) return -1; // Lower IDLE threshold for children
+
+  // Allocate buffer once
+  if (!autocorrBuffer || autocorrBuffer.length !== SIZE) {
+    autocorrBuffer = new Float32Array(SIZE);
+  }
+  const c = autocorrBuffer;
+  c.fill(0);
+
+  // Find signal start/end to trim silence/noise
+  let r1 = 0, r2 = SIZE - 1, thres = 0.2;
+  for (let i = 0; i < SIZE / 2; i++) {
+    if (Math.abs(buffer[i]) < thres) { r1 = i; } else { break; }
+  }
+  for (let i = 1; i < SIZE / 2; i++) {
+    if (Math.abs(buffer[SIZE - i]) < thres) { r2 = SIZE - i; } else { break; }
+  }
+
+  const buf = buffer.slice(r1, r2);
+  const len = buf.length;
+
+  // Brute-force autocorrelation
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len - i; j++) {
+      c[i] = c[i] + buf[j] * buf[j + i];
+    }
+  }
+
+  // Find first peak after zero-lag
+  let d = 0; while (c[d] > c[d + 1]) d++;
+  let maxval = -1, maxpos = -1;
+  for (let i = d; i < len; i++) {
+    if (c[i] > maxval) {
+      maxval = c[i];
+      maxpos = i;
+    }
+  }
+  let T0 = maxpos;
+
+  // Parabolic interpolation
+  let x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
+  let a = (x1 + x3 - 2 * x2) / 2;
+  let b = (x3 - x1) / 2;
+  if (a) T0 = T0 - b / (2 * a);
+
+  return sampleRate / T0;
+}
+
+// ========== 0-СЫНЫП: ТАПСЫРМА 2 - ДАУЫС СОЗУ (О Дыбысы) ==========
 async function startVoicePractice() {
   const feedback = document.getElementById('g0t2Feedback');
   const train = document.getElementById('trainEmoji');
@@ -148,56 +212,83 @@ async function startVoicePractice() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+
     microphoneStream = audioContext.createMediaStreamSource(stream);
     microphoneStream.connect(analyser);
-    analyser.fftSize = 256;
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
+
+    const buffer = new Float32Array(analyser.fftSize);
 
     isListening = true;
     document.getElementById('voiceBtn').style.display = 'none';
     document.getElementById('stopVoiceBtn').style.display = 'inline-block';
-    feedback.innerHTML = "Сөйлеңіз! Пойыз қозғалуда...";
+    feedback.innerHTML = "Енді 'О-о-о' деп созып көріңіз...";
 
-    let trainPosition = 0;
+    // Recognition State
+    let sustainTime = 0;
+    let badFrames = 0;
+    let lastTime = Date.now();
+    const REQUIRED_DURATION = 1000;
+
+    // TUNED PARAMETERS FOR CHILDREN
+    const MIN_FREQ = 150; // Child F0 range (approx 150-350Hz)
+    const MAX_FREQ = 350;
+    const MIN_RMS = 0.015;
 
     function analyze() {
       if (!isListening) return;
       requestAnimationFrame(analyze);
-      analyser.getByteFrequencyData(dataArray);
 
-      let sum = 0;
-      for (let i = 0; i < bufferLength; i++) {
-        sum += dataArray[i];
-      }
-      let average = sum / bufferLength;
+      const now = Date.now();
+      const deltaTime = now - lastTime;
+      lastTime = now;
+
+      analyser.getFloatTimeDomainData(buffer);
+      const rms = calcRMS(buffer);
+      const pitch = autoCorrelate(buffer, audioContext.sampleRate);
 
       const bars = document.querySelectorAll('.wave-bar');
       bars.forEach(bar => {
-        bar.style.height = Math.max(10, average * 1.5) + 'px';
+        bar.style.height = Math.max(10, rms * 500) + 'px';
       });
 
-      if (average > 30) {
-        trainPosition += 0.5;
-        if (trainPosition > 100) trainPosition = 100;
-
-        train.style.transform = `translateX(${trainPosition * 4}px)`;
-        progressBar.style.width = trainPosition + '%';
-        progressBar.innerText = Math.floor(trainPosition) + '%';
-
-        if (trainPosition >= 100) {
-          stopVoicePractice();
-          feedback.innerHTML = "Керемет! Пойыз жетті!";
-          feedback.className = "feedback success";
-          showReward();
+      // === Logic: Detect "O" ===
+      let isO = false;
+      if (rms > MIN_RMS) {
+        if (pitch > MIN_FREQ && pitch < MAX_FREQ) {
+          isO = true;
         }
+      }
+
+      if (isO) {
+        sustainTime += deltaTime;
+        badFrames = 0;
+      } else {
+        badFrames++;
+        if (badFrames > 3) { // Tolerance ~50ms
+          sustainTime = 0;
+        }
+      }
+
+      let progress = (sustainTime / REQUIRED_DURATION) * 100;
+      if (progress > 100) progress = 100;
+
+      train.style.transform = `translateX(${progress * 4}px)`;
+      progressBar.style.width = progress + '%';
+      progressBar.innerText = Math.floor(progress) + '%';
+
+      if (progress >= 100) {
+        stopVoicePractice();
+        feedback.innerHTML = "Керемет! 'О' дыбысы анықталды!";
+        feedback.className = "feedback success";
+        showReward();
       }
     }
     analyze();
 
   } catch (err) {
     console.error(err);
-    feedback.innerHTML = "Микрофон қосылмады. Рұқсат беріңіз.";
+    feedback.innerHTML = "Микрофонға рұқсат беріңіз!";
     feedback.className = "feedback error";
   }
 }
@@ -365,52 +456,44 @@ function checkHumanSound(choice) {
 }
 
 // ========== 0-СЫНЫП: ТАПСЫРМА 8 - КӨЛІКТЕР ДЫБЫСЫ ==========
-// ========== 0-СЫНЫП: ТАПСЫРМА 8 - КӨЛІКТЕР ДЫБЫСЫ ==========
-const vehicles = ['car', 'motorcycle', 'plane', 'train'];
+const vehicles0 = ['car', 'motorcycle', 'plane', 'train'];
+window.g0VehicleTarget = null;
 
-function playRandomVehicle() {
-  currentSoundTarget = vehicles[Math.floor(Math.random() * vehicles.length)];
-  console.log('Grade 0: Vehicle sound selected:', currentSoundTarget);
+window.startVehicleGame = function () {
+  window.g0VehicleTarget = vehicles0[Math.floor(Math.random() * vehicles0.length)];
+  console.log('NEW Game Started. Target:', window.g0VehicleTarget);
 
   const feedback = document.getElementById('g0t8Feedback');
   feedback.innerHTML = "🚗 Көлік дыбысы...";
 
-  // Load audio from sounds/transport/ folder
-  const audio = new Audio(`sounds/transport/${currentSoundTarget}.mp3`);
-  audio.play().catch(e => console.error('Vehicle audio error:', e));
+  const audio = new Audio(`sounds/transport/${window.g0VehicleTarget}.mp3`);
+  audio.play().catch(e => console.error('Audio play error:', e));
 
-  // Shuffle cards
   shuffleCardsInTask('g0Task8');
 }
 
-function checkVehicle0(choice) {
-  console.log('Grade 0 checkVehicle0 called with:', choice);
-  console.log('Current target:', currentSoundTarget);
-
+window.verifyVehicleChoice = function (choice) {
+  console.log('Verify choice:', choice, 'Target:', window.g0VehicleTarget);
   const feedback = document.getElementById('g0t8Feedback');
 
-  // Если игра не начата (не нажали "Тыңдау"), просто воспроизводим звук предмета
-  if (!currentSoundTarget) {
-    console.log('No target set, playing preview sound');
+  if (!window.g0VehicleTarget) {
+    console.log('No target, playing preview');
     const audio = new Audio(`sounds/transport/${choice}.mp3`);
-    audio.play().catch(e => console.error('Preview audio error:', e));
+    audio.play().catch(e => console.error(e));
     return;
   }
 
-  if (choice === currentSoundTarget) {
-    console.log('Correct!');
-    const kazakhNames = {
-      'car': 'Машина',
-      'motorcycle': 'Мотоцикл',
-      'plane': 'Ұшақ',
-      'train': 'Пойыз'
-    };
-    feedback.innerHTML = "Дұрыс! Бұл - " + (kazakhNames[choice] || choice);
+  if (choice === window.g0VehicleTarget) {
+    console.log('WIN!');
+    const names = { 'car': 'Машина', 'motorcycle': 'Мотоцикл', 'plane': 'Ұшақ', 'train': 'Пойыз' };
+    feedback.innerHTML = "Дұрыс! Бұл - " + (names[choice] || choice);
     feedback.className = "feedback success";
+
     showReward();
-    currentSoundTarget = null;
+
+    window.g0VehicleTarget = null;
   } else {
-    console.log('Wrong!');
+    console.log('LOSE');
     playError();
     feedback.innerHTML = "Қате! Қайта тыңдап көріңіз.";
     feedback.className = "feedback error";
