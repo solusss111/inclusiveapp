@@ -533,6 +533,137 @@ function checkLetterAnswer() {
   }
 }
 
+// ========== 1-СЫНЫП ТАПСЫРМАЛАРЫ (Grade 1 Tasks) ==========
+
+function startTask(type) {
+  currentTask = type;
+  showScreen('gamePlay');
+  const container = document.getElementById('optionsContainer');
+  if (container) {
+    container.innerHTML = '<div class="center-circle" id="actionElement" onclick="playCurrentAudio()">🔊</div>';
+    // Ensure the container is ready for new items
+    container.classList.remove('active');
+  }
+  const fb = document.getElementById('gameFeedback');
+  if (fb) fb.innerHTML = "";
+
+  let options = [];
+
+  if (type === 'claps') {
+    document.getElementById('taskTitle').innerText = "Дыбыс санын анықта";
+    document.getElementById('taskDesc').innerText = "Шапалақ неше рет соғылды?";
+    options = [{ val: 1, icon: '1', label: 'Біреу' }, { val: 2, icon: '2', label: 'Екеу' }, { val: 3, icon: '3', label: 'Үшеу' }];
+    generateClaps();
+  }
+  else if (type === 'pitch') {
+    document.getElementById('taskTitle').innerText = "Кімнің дауысы?";
+    document.getElementById('taskDesc').innerText = "Дауыс жиілігін ажырат";
+    options = [{ val: 'low', icon: '👨', label: 'Төмен' }, { val: 'mid', icon: '👩', label: 'Орта' }, { val: 'high', icon: '🧒', label: 'Жоғары' }];
+    generatePitch();
+  }
+  else if (type === 'home') {
+    document.getElementById('taskTitle').innerText = "Тұрмыстық дыбыстар";
+    document.getElementById('taskDesc').innerText = "Бұл ненің дыбысы?";
+    options = [{ val: 'phone', icon: '📱', label: 'Телефон' }, { val: 'clock', icon: '⏰', label: 'Сағат' }, { val: 'bike', icon: '🚲', label: 'Велосипед' }, { val: 'doorbell', icon: '🔔', label: 'Есік' }, { val: 'schoolbell', icon: '🏫', label: 'Мектеп' }];
+    generateHomeSound();
+  }
+  else if (type === 'tempo') {
+    document.getElementById('taskTitle').innerText = "Би ырғағы";
+    document.getElementById('taskDesc').innerText = "Музыканың қарқынын тап";
+    options = [{ val: 'fast', icon: '🚀', label: 'Тез' }, { val: 'slow', icon: '🐢', label: 'Баяу' }];
+    generateTempo();
+  }
+
+  renderRadialOptions(options);
+}
+
+function renderRadialOptions(options) {
+  const container = document.getElementById('optionsContainer');
+  if (!container) return;
+
+  const radius = 220;
+  const count = options.length;
+
+  options.forEach((opt, index) => {
+    const angleDeg = (360 / count) * index - 90;
+    const div = document.createElement('div');
+    div.className = "option-circle";
+    div.style.setProperty('--angle', angleDeg + 'deg');
+    div.style.setProperty('--dist', radius + 'px');
+    div.onclick = () => checkGenericAnswer(opt.val);
+
+    div.innerHTML = `<div style="font-size: 40px;">${opt.icon}</div><p style="margin:0; font-size:16px;">${opt.label}</p>`;
+    container.appendChild(div);
+  });
+
+  // Trigger animation
+  setTimeout(() => container.classList.add('active'), 50);
+}
+
+function generateClaps() { correctAnswer = Math.floor(Math.random() * 3) + 1; }
+function generatePitch() { const p = ['low', 'mid', 'high']; correctAnswer = p[Math.floor(Math.random() * 3)]; }
+function generateHomeSound() { const s = ['phone', 'clock', 'bike', 'doorbell', 'schoolbell']; correctAnswer = s[Math.floor(Math.random() * s.length)]; }
+function generateTempo() { correctAnswer = Math.random() > 0.5 ? 'fast' : 'slow'; }
+
+function playCurrentAudio() {
+  if (isPlaying) return;
+  isPlaying = true;
+  let audioElement = null;
+
+  if (currentTask === 'claps') { playClapsSequence(correctAnswer); return; }
+  else if (currentTask === 'pitch') {
+    if (correctAnswer === 'low') audioElement = document.getElementById('lowVoice');
+    else if (correctAnswer === 'mid') audioElement = document.getElementById('midVoice');
+    else if (correctAnswer === 'high') audioElement = document.getElementById('highVoice');
+  } else if (currentTask === 'home') {
+    if (correctAnswer === 'phone') audioElement = document.getElementById('phoneSound');
+    else if (correctAnswer === 'clock') audioElement = document.getElementById('clockSound');
+    else if (correctAnswer === 'bike') audioElement = document.getElementById('bikeSound');
+    else if (correctAnswer === 'doorbell') audioElement = document.getElementById('doorbellAudio');
+    else if (correctAnswer === 'schoolbell') audioElement = document.getElementById('schoolbellAudio');
+  } else if (currentTask === 'tempo') {
+    if (correctAnswer === 'fast') audioElement = document.getElementById('fastRhythm');
+    else if (correctAnswer === 'slow') audioElement = document.getElementById('slowRhythm');
+  }
+
+  if (audioElement) {
+    audioElement.currentTime = 0;
+    audioElement.play().catch(e => console.log("Audio play failed: ", e))
+      .finally(() => { setTimeout(() => { isPlaying = false; }, 500); });
+  } else {
+    isPlaying = false;
+  }
+}
+
+function playClapsSequence(count) {
+  const clapAudio = document.getElementById('clickSound');
+  let played = 0;
+  function playNext() {
+    if (played < count) {
+      clapAudio.currentTime = 0;
+      clapAudio.play().catch(e => console.log("Clap play failed"));
+      played++;
+      setTimeout(playNext, 600);
+    } else { isPlaying = false; }
+  }
+  playNext();
+}
+
+function checkGenericAnswer(val) {
+  const fb = document.getElementById('gameFeedback');
+  if (val == correctAnswer) {
+    fb.innerHTML = "Жарайсың! Дұрыс 🎉";
+    fb.className = "feedback success";
+    addCoins(10);
+    showReward();
+    setTimeout(() => startTask(currentTask), 1500);
+  } else {
+    fb.innerHTML = "Қате, тағы тыңдап көр ❌";
+    fb.className = "feedback error";
+    playError();
+  }
+}
+
 // ========== ALIPPE LOCAL (INJECTED) ==========
 function playAlippeSoundLocal(letter) {
   const letterLower = letter.toLowerCase();
