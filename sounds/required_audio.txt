@@ -1,61 +1,18 @@
-# REQUIRED AUDIO FILES
-# ====================
-# These files are missing or causing errors. Please check the 'sounds' folder structure.
-click.mp3
-sounds/click.mp3
-# Grade 1 - Rhythm & Tempo
-sounds/rhythm/fast.mp3
-sounds/rhythm/slow.mp3
-
-# Grade 1 - Familiar Words
-sounds/familiar_words/hello.mp3
-sounds/familiar_words/goodbye.mp3
-sounds/familiar_words/thankyou.mp3
-sounds/familiar_words/good_morning.mp3
-
-# Grade 1 - Musical Tales
-sounds/musical_tales/red_riding_hood.mp3
-sounds/musical_tales/pinocchio.mp3
-sounds/musical_tales/three_bears.mp3
-sounds/musical_tales/snow_white.mp3
-
-# Grade 2/3 - Complex Rhythms
-sounds/complex_rhythms/rhythm_4.mp3
-
-# Grade 2/3 - Syllables & Letters
-sounds/syllables/word_4.mp3
-sounds/letters/word_sh.mp3
-
-# Grade 2/3 - Sound Properties & Stress
-sounds/sound_properties/intensity_quiet.mp3
-sounds/stress/stress_3.mp3
-
-# Grade 2/3 - Music Tempo
-sounds/music_tempo/slow.mp3
-
-# Grade 2/3 - Intonation
-sounds/intonation/question.mp3
-
-# Grade 4 - Stories & Dialogs
-sounds/stories/story_1.mp3
-sounds/dialog/adult.mp3
-
-# Grade 4 - Directions
-sounds/directions/front.mp3
-
-# Task 1 (Letters) - Specific Character Sounds
-# Ensure all letters in "sounds/letters/" exist (e.g. letter_a.mp3 ... letter_ya.mp3)
-# The user log specifically mentioned:
-sounds/letters/word_sh.mp3
-GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/fast.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:87  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/slow.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:332  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/fast.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:332  GET file:///C:/Users/user/Desktop/simplesite/sounds/rhythm/slow.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/hello.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/goodbye.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/thankyou.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/familiar_words/good_morning.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/red_riding_hood.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/pinocchio.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/three_bears.mp3 net::ERR_FILE_NOT_FOUND
-index2.html:1942  GET file:///C:/Users/user/Desktop/simplesite/sounds/musical_tales/snow_white.mp3 
+Fast Rhythm > sounds/rhythm/fast.mp3 > Тез ырғақты музыка немесе дабыл (Fast music)
+Slow Rhythm > sounds/rhythm/slow.mp3 > Баяу ырғақты музыка (Slow music)
+Hello > sounds/familiar_words/hello.mp3 > "Сәлем" сөзінің айтылуы (Saying "Hello")
+Goodbye > sounds/familiar_words/goodbye.mp3 > "Сау бол" сөзінің айтылуы (Saying "Goodbye")
+Thank You > sounds/familiar_words/thankyou.mp3 > "Рахмет" сөзінің айтылуы (Saying "Thank you")
+Good Morning > sounds/familiar_words/good_morning.mp3 > "Қайырлы таң" тіркесі (Saying "Good morning")
+Red Riding Hood > sounds/musical_tales/red_riding_hood.mp3 > "Қызыл телпек" ертегісінен үзінді (Red Riding Hood tale excerpt)
+Pinocchio > sounds/musical_tales/pinocchio.mp3 > "Буратино" ертегісінен үзінді (Pinocchio tale excerpt)
+Three Bears > sounds/musical_tales/three_bears.mp3 > "Үш аю" ертегісінен үзінді (Three Bears tale excerpt)
+Snow White > sounds/musical_tales/snow_white.mp3 > "Ақшақар" ертегісінен үзінді (Snow White tale excerpt)
+Word for Sh > sounds/letters/word_sh.mp3 > Ш әрпі кездесетін сөз, мысалы "Шар" (Word with Sh, e.g. Balloon)
+Quiet Sound > sounds/sound_properties/intensity_quiet.mp3 > Өте ақырын, бәсең дыбыс (Quiet sound)
+Stress 3 > sounds/stress/stress_3.mp3 > Екпін қойылған сөз үлгісі (Stress pattern example)
+Slow Tempo > sounds/music_tempo/slow.mp3 > Баяу ойналатын музыка темпі (Slow musical tempo)
+Complex Rhythm 4 > sounds/complex_rhythms/rhythm_4.mp3 > Күрделі соғылған ырғақ (Complex rhythm pattern)
+Story 1 > sounds/stories/story_1.mp3 > Қысқаша әңгіме немесе хикая (Short story)
+Adult Dialog > sounds/dialog/adult.mp3 > Ересек адамдардың диалогы (Dialog between adults)
+Front Direction > sounds/directions/front.mp3 > "Алдыға" немесе "Тура" сөзі/дыбысы (Direction "Front")
