@@ -183,9 +183,9 @@ function checkVehicle(choice) {
   }
 }
 
-// ТАПСЫРМА 2: Буындар
+// ТАПСЫРМА 2: Буындар (работает для 0-сынып и 2-сынып)
 function checkSyllables(count) {
-  const feedback = document.getElementById('g2t2Feedback');
+  const feedback = document.getElementById('g0tSyllablesFeedback') || document.getElementById('g2t2Feedback');
   if (!currentSyllableCount) {
     feedback.innerHTML = "Алдымен сөзді тыңдаңыз! 🔊";
     feedback.className = "feedback";

@@ -309,48 +309,82 @@
             <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
               style="cursor: pointer; width:160px; height:160px; font-size:28px; background: linear-gradient(135deg, #FDB813 0%, #F5A623 100%);">
               0-сынып</div>
-            <!-- Inner Ring (r=180px) -->
+
+            <!-- Two main subcategories for Grade 0 -->
+            <div class="radial-item" style="--angle: 90deg; --dist: 220px;" onclick="showScreen('grade0SoundsMenu')">
+              <div>🔊</div>
+              <p>Дыбыстар</p>
+            </div>
+            <div class="radial-item" style="--angle: 270deg; --dist: 220px;" onclick="showScreen('grade0VoiceMenu')">
+              <div>🎤</div>
+              <p>Дауыс</p>
+            </div>
+          </div>
+          <!-- Back Button -->
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')"
+            style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grade 0 - Sounds Menu (Дыбыстар) -->
+    <div id="grade0SoundsMenu" class="screen">
+      <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
+        <!-- Left: Alippe -->
+        <div class="alippe-panel">
+          <div class="alippe-header">Әліппе</div>
+          <div class="alippe-grid"></div>
+        </div>
+        <!-- Right: Radial Menu -->
+        <div class="task-content-wrapper"
+          style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="radial-menu-container active" style="width: 700px; height: 700px;">
+            <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
+              style="cursor: pointer; width:160px; height:160px; font-size:24px; background: linear-gradient(135deg, #00C9FF 0%, #0084FF 100%);">
+              Дыбыстар</div>
+
+            <!-- Inner Ring: 5 tasks evenly spaced at 72° intervals -->
             <div class="radial-item" style="--angle: 0deg; --dist: 180px;" onclick="showScreen('g0Task1')">
               <div>🔊</div>
               <p>Тану</p>
             </div>
-            <div class="radial-item" style="--angle: 72deg; --dist: 180px;" onclick="showScreen('g0Task2')">
-              <div>🎤</div>
-              <p>Дауыс</p>
-            </div>
-            <div class="radial-item" style="--angle: 144deg; --dist: 180px;" onclick="showScreen('g0Task3')">
+            <div class="radial-item" style="--angle: 72deg; --dist: 180px;" onclick="showScreen('g0Task3')">
               <div>🎺</div>
               <p>Аспап</p>
             </div>
-            <div class="radial-item" style="--angle: 216deg; --dist: 180px;" onclick="showScreen('g0Task4')">
+            <div class="radial-item" style="--angle: 144deg; --dist: 180px;" onclick="showScreen('g0Task4')">
               <div>🐴</div>
               <p>Жануар</p>
             </div>
-            <div class="radial-item" style="--angle: 288deg; --dist: 180px;" onclick="showScreen('g0Task5')">
+            <div class="radial-item" style="--angle: 216deg; --dist: 180px;" onclick="showScreen('g0Task5')">
               <div>🎵</div>
               <p>Ырғақ</p>
             </div>
-
-            <!-- Outer Ring (r=310px) -->
-            <div class="radial-item" style="--angle: 20deg; --dist: 310px;" onclick="showScreen('g0Task6')">
+            <div class="radial-item" style="--angle: 288deg; --dist: 180px;" onclick="showScreen('g0Task6')">
               <div>🌳</div>
               <p>Табиғат</p>
             </div>
-            <div class="radial-item" style="--angle: 60deg; --dist: 310px;" onclick="showScreen('g0Task7')">
+
+            <!-- Outer Ring: 9 tasks evenly spaced at 40° intervals -->
+            <div class="radial-item" style="--angle: 20deg; --dist: 310px;" onclick="showScreen('g0Task7')">
               <div>🗣️</div>
               <p>Адам</p>
             </div>
-            <div class="radial-item" style="--angle: 100deg; --dist: 310px;" onclick="showScreen('g0Task8')">
+            <div class="radial-item" style="--angle: 60deg; --dist: 310px;" onclick="showScreen('g0Task8')">
               <div>🚗</div>
               <p>Көлік</p>
             </div>
-            <div class="radial-item" style="--angle: 140deg; --dist: 310px;" onclick="showScreen('g0Task9')">
+            <div class="radial-item" style="--angle: 100deg; --dist: 310px;" onclick="showScreen('g0Task9')">
               <div>📱</div>
               <p>Үй</p>
             </div>
-            <div class="radial-item" style="--angle: 180deg; --dist: 310px;" onclick="showScreen('g0TaskWild')">
+            <div class="radial-item" style="--angle: 140deg; --dist: 310px;" onclick="showScreen('g0TaskWild')">
               <div>🦁</div>
               <p>Жабайы</p>
+            </div>
+            <div class="radial-item" style="--angle: 180deg; --dist: 310px;" onclick="showScreen('g0TaskSyllables')">
+              <div>👏</div>
+              <p>Буындар</p>
             </div>
             <div class="radial-item" style="--angle: 220deg; --dist: 310px;" onclick="showScreen('g0TaskTech2')">
               <div>🔫</div>
@@ -370,7 +404,36 @@
             </div>
           </div>
           <!-- Back Button -->
-          <button class="btn btn-secondary" onclick="playClick(); showScreen('levelsScreen')"
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')"
+            style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grade 0 - Voice Menu (Дауыс) -->
+    <div id="grade0VoiceMenu" class="screen">
+      <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
+        <!-- Left: Alippe -->
+        <div class="alippe-panel">
+          <div class="alippe-header">Әліппе</div>
+          <div class="alippe-grid"></div>
+        </div>
+        <!-- Right: Radial Menu -->
+        <div class="task-content-wrapper"
+          style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="radial-menu-container active" style="width: 700px; height: 700px;">
+            <div class="radial-center-btn" onclick="toggleRadialGradeMenu(this)"
+              style="cursor: pointer; width:160px; height:160px; font-size:28px; background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 100%);">
+              Дауыс</div>
+
+            <!-- Only Voice Training Task (renamed to "Поезд") -->
+            <div class="radial-item" style="--angle: 0deg; --dist: 220px;" onclick="showScreen('g0Task2')">
+              <div>🚂</div>
+              <p>Поезд</p>
+            </div>
+          </div>
+          <!-- Back Button -->
+          <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')"
             style="position: absolute; bottom: 20px; left: 20px; z-index: 100;">⬅️ Артқа</button>
         </div>
       </div>
@@ -403,7 +466,7 @@
 
         <div id="g0t1Feedback" class="feedback"></div>
 
-        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">
+        <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">
           ⬅️ Артқа
         </button>
       </div>
@@ -428,7 +491,7 @@
           <div class="voice-bubble-container" id="voiceGameContainer">
             <!-- Center Button -->
             <div class="voice-center-bubble" id="voiceCenterBtn" onclick="handleVoiceCenterClick()">
-              Дауыс созу
+              Поезд 🚂
             </div>
             <!-- Bubbles will be generated by JS -->
           </div>
@@ -464,7 +527,7 @@
           </div>
 
           <button class="btn btn-secondary" style="position:absolute; bottom:20px; left:20px;"
-            onclick="playClick(); if(typeof stopVoiceGame === 'function') stopVoiceGame(); showScreen('grade0Menu')">
+            onclick="playClick(); if(typeof stopVoiceGame === 'function') stopVoiceGame(); showScreen('grade0VoiceMenu')">
             ⬅️ Артқа
           </button>
         </div>
@@ -511,7 +574,7 @@
             </div>
 
             <div id="g0t3Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -561,7 +624,7 @@
             </div>
 
             <div id="g0t4Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -594,7 +657,7 @@
 
             <p style="text-align: center; color: white;">Барабанды бас!</p>
 
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -634,7 +697,7 @@
             </div>
 
             <div id="g0t6Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -674,7 +737,7 @@
             </div>
 
             <div id="g0t7Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -720,7 +783,7 @@
             </div>
 
             <div id="g0t8Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -765,7 +828,7 @@
             </div>
 
             <div id="g0t9Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -1127,8 +1190,8 @@
     </div>
 
 
-    <!-- 2-СЫНЫП: ТАПСЫРМА 2 - БУЫНДАР -->
-    <div id="g2Task2" class="screen">
+    <!-- 0-СЫНЫП: ТАПСЫРМА - БУЫНДАР (moved from Grade 2) -->
+    <div id="g0TaskSyllables" class="screen">
       <div class="task-flex-container" style="display: flex; height: 100vh; width: 100%; overflow: hidden;">
         <div class="alippe-panel">
           <div class="alippe-header">Әліппе</div>
@@ -1161,8 +1224,8 @@
               </div>
             </div>
 
-            <div id="g2t2Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade2Menu')">⬅️ Артқа</button>
+            <div id="g0tSyllablesFeedback" class="feedback"></div>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -2010,7 +2073,7 @@
               </div>
             </div>
             <div id="g0tWildFeedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -2046,7 +2109,7 @@
               </div>
             </div>
             <div id="g0tTech2Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -2085,7 +2148,7 @@
               </div>
             </div>
             <div id="g0tApplianceFeedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -2118,7 +2181,7 @@
               </div>
             </div>
             <div id="g0tTech4Feedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
@@ -2155,7 +2218,7 @@
               </div>
             </div>
             <div id="g0tEmotionFeedback" class="feedback"></div>
-            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0Menu')">⬅️ Артқа</button>
+            <button class="btn btn-secondary" onclick="playClick(); showScreen('grade0SoundsMenu')">⬅️ Артқа</button>
           </div>
         </div>
       </div>
