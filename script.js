@@ -315,17 +315,78 @@ function checkAnimal(choice) {
   else { playError(); feedback.innerHTML = "Жоқ, бұл басқа жануар."; feedback.className = "feedback error"; }
 }
 
+// ========== ЫРҒАҚ (RHYTHM) QUIZ GAME ==========
+let currentRhythm = null; // 'march' or 'waltz'
+
+function playRandomRhythm() {
+  // Stop any currently playing rhythm
+  stopAllRhythm();
+
+  // Pick random rhythm
+  currentRhythm = Math.random() < 0.5 ? 'march' : 'waltz';
+
+  const audio = currentRhythm === 'march' ? document.getElementById('march') : document.getElementById('vals');
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(e => { });
+  }
+
+  // Visual feedback on center button
+  const drum = document.getElementById('rhythmDrum');
+  if (drum) {
+    drum.style.transform = "scale(0.9)";
+    setTimeout(() => drum.style.transform = "scale(1)", 150);
+  }
+
+  // Clear previous feedback
+  const feedback = document.getElementById('rhythmFeedback');
+  if (feedback) {
+    feedback.innerHTML = "🎵 Тыңдаңыз... Марш па, әлде Вальс па?";
+    feedback.className = "feedback";
+  }
+}
+
+function checkRhythm(choice) {
+  const feedback = document.getElementById('rhythmFeedback');
+  if (!currentRhythm) {
+    if (feedback) {
+      feedback.innerHTML = "🎧 Алдымен музыканы тыңдаңыз!";
+      feedback.className = "feedback";
+    }
+    return;
+  }
+
+  if (choice === currentRhythm) {
+    if (feedback) {
+      feedback.innerHTML = "✅ Дұрыс! Бұл — " + (currentRhythm === 'march' ? 'Марш 💂' : 'Вальс 💃');
+      feedback.className = "feedback success";
+    }
+    showReward();
+    currentRhythm = null;
+  } else {
+    if (feedback) {
+      feedback.innerHTML = "❌ Қате! Тағы бір тыңдаңыз.";
+      feedback.className = "feedback error";
+    }
+    playError();
+  }
+}
+
+function stopAllRhythm() {
+  const marchAudio = document.getElementById('march');
+  const valsAudio = document.getElementById('vals');
+  if (marchAudio) { marchAudio.pause(); marchAudio.currentTime = 0; }
+  if (valsAudio) { valsAudio.pause(); valsAudio.currentTime = 0; }
+}
+
 function hitDrum() {
   const drum = document.getElementById('rhythmDrum');
-  drum.style.transform = "scale(0.9)";
-  setTimeout(() => drum.style.transform = "scale(1)", 100);
-  const drumSound = document.getElementById('clickSound');
-  drumSound.currentTime = 0;
-  drumSound.play().catch(e => { });
-}
-function playRhythm(type) {
-  const audio = type === 'march' ? document.getElementById('fastRhythm') : document.getElementById('slowRhythm');
-  if (audio) { audio.currentTime = 0; audio.play().catch(e => { }); }
+  if (drum) {
+    drum.style.transform = "scale(0.9)";
+    setTimeout(() => drum.style.transform = "scale(1)", 100);
+  }
+  const drumAudio = document.getElementById('drumSound');
+  if (drumAudio) { drumAudio.currentTime = 0; drumAudio.play().catch(e => { }); }
 }
 
 const natureSounds = ['bird', 'water', 'wind'];
@@ -1810,10 +1871,18 @@ function frogVictoryDance() {
 
 // ========== EXTENDED ALIPPE LOGIC (Appended) ==========
 
-// Global function to play word sound
+// Global function to play word sound from sounds/Alippe/words/
 window.playAlippeWordSound = function (letter, word) {
-  // Fallback: Play letter sound
-  playAlippeSoundLocal(letter);
+  if (word) {
+    const wordPath = `sounds/Alippe/words/${word}.mp3`;
+    const wordAudio = new Audio(wordPath);
+    wordAudio.play().catch(() => {
+      // Fallback: Play letter sound if word file not found
+      playAlippeSoundLocal(letter);
+    });
+  } else {
+    playAlippeSoundLocal(letter);
+  }
 };
 
 function initAlippeLocal() {
@@ -1897,6 +1966,7 @@ function initAlippeLocal() {
 
       let clickCount = 0;
       let clickTimer = null;
+      let soundTimer = null;
 
       item.onclick = () => {
         clickCount++;
@@ -1906,17 +1976,20 @@ function initAlippeLocal() {
         setTimeout(() => item.style.transform = "scale(1)", 150);
 
         if (clickCount === 1) {
-          // Play sound only on first click
-          playAlippeSoundLocal(itemData.letter);
+          // Delay sound so it can be cancelled on double-click
+          soundTimer = setTimeout(() => {
+            playAlippeSoundLocal(itemData.letter);
+          }, 250);
 
           clickTimer = setTimeout(() => {
             clickCount = 0;
           }, 400);
         } else if (clickCount === 2) {
           clearTimeout(clickTimer);
+          clearTimeout(soundTimer);
           clickCount = 0;
 
-          // Sound NOT played here, only panel opens
+          // Only panel opens, no letter sound
           showWordOnRightPanel(itemData);
 
           document.querySelectorAll('.alippe-item').forEach(i => i.classList.remove('expanded'));
